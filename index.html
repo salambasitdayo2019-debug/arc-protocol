@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arctraid — Testnet DApp</title>
+<title>Arctriad — Testnet DApp</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 <style>
@@ -79,13 +79,63 @@ select option{background:var(--surface2)}
 .btn-outline{padding:8px 16px;border-radius:8px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
 .btn-outline:hover{border-color:var(--accent);color:#60a5fa}
 
-.swap-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.1rem;margin-bottom:6px}
-.swap-input-row{display:flex;align-items:center;gap:.8rem}
-.swap-input-row input{flex:1}
-.token-badge{background:var(--surface3);border:1px solid var(--border2);color:var(--text);padding:10px 14px;border-radius:8px;font-family:'DM Mono',monospace;font-size:.82rem;cursor:pointer;white-space:nowrap}
-.swap-flip{text-align:center;padding:6px 0;font-size:1.5rem;color:var(--accent);cursor:pointer;transition:transform .4s}
-.swap-flip:hover{transform:rotate(180deg)}
-.swap-rate{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text3);margin-bottom:1rem}
+/* ── SWAP REDESIGN ── */
+.swap-panel-wrap{display:flex;flex-direction:column;gap:6px}
+.swap-side{border-radius:16px;padding:1.2rem 1.4rem 1rem;position:relative}
+.swap-side.from-side{background:#0d1f3a;border:2px solid #1e3a6e}
+.swap-side.to-side{background:#0a1f18;border:2px solid #164430}
+.swap-side-label{font-size:.65rem;font-family:'DM Mono',monospace;letter-spacing:.12em;margin-bottom:.7rem;display:flex;align-items:center;justify-content:space-between}
+.swap-side-label .side-tag{font-weight:700}
+.from-side .side-tag{color:#60a5fa}
+.to-side .side-tag{color:#34d399}
+.swap-side-label .side-bal{color:var(--text3);font-size:.62rem}
+.swap-main-row{display:flex;align-items:center;gap:12px}
+.swap-amount-input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  font-family:'Outfit',sans-serif;
+  font-size:2.6rem;
+  font-weight:900;
+  letter-spacing:-.03em;
+  padding:0;
+  width:100%;
+  min-width:0;
+}
+.from-side .swap-amount-input{color:#ffffff;caret-color:#60a5fa}
+.from-side .swap-amount-input::placeholder{color:rgba(255,255,255,.2)}
+.to-side .swap-amount-input{color:#34d399;caret-color:#34d399}
+.to-side .swap-amount-input::placeholder{color:rgba(52,211,153,.2)}
+.swap-token-select{
+  flex-shrink:0;
+  background:#0f1e36;
+  border:1.5px solid #2a4a80;
+  border-radius:50px;
+  color:#fff;
+  font-family:'DM Mono',monospace;
+  font-size:.9rem;
+  font-weight:700;
+  padding:10px 18px;
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2360a5fa'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  padding-right:32px;
+  letter-spacing:.03em;
+}
+.to-side .swap-token-select{background:#0a1f18;border-color:#1e5c3a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2334d399'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.swap-token-select option{background:#0d1f3a;color:#fff}
+.swap-usd-hint{font-size:.75rem;font-family:'DM Mono',monospace;color:var(--text3);margin-top:.5rem}
+.swap-flip-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#0f1929;border:2px solid var(--border2);color:#60a5fa;font-size:1.3rem;cursor:pointer;transition:all .35s;margin:0 auto;position:relative;z-index:2;flex-shrink:0;align-self:center}
+.swap-flip-btn:hover{transform:rotate(180deg);border-color:var(--accent);background:rgba(59,130,246,.15)}
+.swap-rate-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.14);border-radius:10px;padding:10px 16px;margin-bottom:1rem;flex-wrap:wrap;gap:.4rem}
+.swap-rate-bar .rate-label{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--text3)}
+.swap-rate-bar .rate-val{font-size:.75rem;font-family:'DM Mono',monospace;color:#60a5fa;font-weight:700}
+.swap-max-btn{font-size:.62rem;font-family:'DM Mono',monospace;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#60a5fa;border-radius:4px;padding:2px 7px;cursor:pointer;margin-left:6px}
+.swap-max-btn:hover{background:rgba(96,165,250,.22)}
 
 .nft-tabs{display:flex;gap:6px;margin-bottom:1.2rem;flex-wrap:wrap}
 .nft-tab{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
@@ -154,6 +204,27 @@ select option{background:var(--surface2)}
 .tx-status-pend{font-size:.75rem;color:var(--orange);font-weight:700;font-family:'DM Mono',monospace}
 .tx-status-fail{font-size:.75rem;color:var(--red);font-weight:700;font-family:'DM Mono',monospace}
 
+.live-tx-banner{background:rgba(4,8,15,.95);border:1px solid var(--border2);border-radius:14px;padding:0;margin:0 auto 1.5rem;max-width:960px;position:relative;z-index:1;overflow:hidden}
+.live-tx-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.2rem;border-bottom:1px solid var(--border)}
+.live-tx-title{font-size:.72rem;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;display:flex;align-items:center;gap:8px}
+.live-pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.2s infinite}
+.live-tx-count{font-size:.65rem;font-family:'DM Mono',monospace;color:var(--text3)}
+.live-tx-count span{color:var(--cyan)}
+.live-tx-scroll{display:flex;gap:.6rem;overflow-x:auto;padding:.7rem 1.2rem;scroll-behavior:smooth;scrollbar-width:none}
+.live-tx-scroll::-webkit-scrollbar{display:none}
+.live-chip{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 12px;white-space:nowrap;flex-shrink:0;animation:chipIn .3s ease}
+@keyframes chipIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.live-chip-icon{font-size:.9rem}
+.live-chip-text{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--text2)}
+.live-chip-text strong{color:var(--text)}
+.live-chip-time{font-size:.6rem;color:var(--text3);font-family:'DM Mono',monospace;margin-left:4px}
+.live-chip.chip-transfer{border-left:2px solid var(--accent)}
+.live-chip.chip-swap{border-left:2px solid var(--cyan)}
+.live-chip.chip-nft{border-left:2px solid var(--gold)}
+.live-chip.chip-lock{border-left:2px solid var(--purple)}
+.live-chip.chip-fee{border-left:2px solid #a78bfa}
+.live-empty{font-size:.75rem;font-family:'DM Mono',monospace;color:var(--text3);padding:.2rem 0}
+
 .arc-hero{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border2);border-radius:20px;padding:3rem 2rem;margin-bottom:1.5rem;text-align:center;position:relative;overflow:hidden}
 .arc-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(59,130,246,.12),transparent 65%)}
 .arc-logo-big{font-family:'Outfit',sans-serif;font-size:3.8rem;font-weight:900;letter-spacing:-.05em;background:linear-gradient(120deg,#60a5fa 0%,#06b6d4 40%,#10b981 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;position:relative}
@@ -189,7 +260,6 @@ select option{background:var(--surface2)}
 .setup-row{display:flex;justify-content:space-between;font-size:.78rem;font-family:'DM Mono',monospace;padding:4px 0;border-bottom:1px solid var(--border)}
 .setup-row:last-child{border-bottom:none}
 .setup-val{color:var(--cyan)}
-
 .info-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-size:.82rem;color:var(--green);font-family:'DM Mono',monospace;line-height:1.7}
 
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
@@ -227,7 +297,6 @@ select option{background:var(--surface2)}
 .toast-msg{font-size:.75rem;color:var(--text2)}
 .toast-hash{font-size:.62rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:4px}
 .toast-hash a{color:var(--accent);text-decoration:none}
-
 .builder-bar{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--text3);font-family:'DM Mono',monospace;position:relative;z-index:1;border-top:1px solid var(--border)}
 .builder-bar a{color:var(--accent);text-decoration:none}
 
@@ -238,13 +307,14 @@ select option{background:var(--surface2)}
   .form-2col{grid-template-columns:1fr}
   .period-grid{grid-template-columns:repeat(2,1fr)}
   .arc-logo-big{font-size:2.5rem}
+  .swap-amount-input{font-size:1.8rem}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">ARC.TRAID</div>
+  <div class="logo">ARCTRIAD</div>
   <div class="header-right">
     <div class="net-pill"><div class="net-dot"></div><span id="net-name">ARC TESTNET</span></div>
     <button class="connect-btn" id="connectBtn" onclick="connectWallet()">Connect MetaMask</button>
@@ -271,9 +341,19 @@ select option{background:var(--surface2)}
   </div>
 </div>
 
+<div class="live-tx-banner" id="live-tx-banner" style="max-width:960px;margin-left:auto;margin-right:auto;margin-top:0;display:none">
+  <div class="live-tx-header">
+    <div class="live-tx-title"><div class="live-pulse"></div>LIVE TRANSACTIONS ON ARCTRIAD</div>
+    <div class="live-tx-count">Total: <span id="live-tx-total">0</span></div>
+  </div>
+  <div class="live-tx-scroll" id="live-tx-scroll">
+    <div class="live-empty">No transactions yet — connect your wallet to get started</div>
+  </div>
+</div>
+
 <main>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('overview')">🌐 Arc Overview</button>
+    <button class="tab-btn active" onclick="switchTab('overview')">🌐 Arctriad Overview</button>
     <button class="tab-btn" onclick="switchTab('transfer')">💸 Transfer</button>
     <button class="tab-btn" onclick="switchTab('swap')">🔄 Swap</button>
     <button class="tab-btn" onclick="switchTab('nft')">🖼️ NFT Market</button>
@@ -284,7 +364,7 @@ select option{background:var(--surface2)}
   <!-- OVERVIEW -->
   <div id="panel-overview" class="panel active">
     <div class="arc-hero">
-      <div class="arc-logo-big">ARC PROTOCOL</div>
+      <div class="arc-logo-big">ARCTRIAD</div>
       <div class="arc-tagline">Circle's EVM Blockchain — USDC as Native Gas Token</div>
       <div class="arc-pills">
         <span class="arc-pill blue">Chain ID: 5042002</span>
@@ -294,7 +374,6 @@ select option{background:var(--surface2)}
         <span class="arc-pill orange">Built by Circle</span>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">🦊 Add Arc Testnet to MetaMask</div>
       <div class="card-sub">One click to add the network, then connect your wallet</div>
@@ -307,18 +386,14 @@ select option{background:var(--surface2)}
         <div class="setup-row"><span>USDC Contract</span><span class="setup-val">0x3600000000000000000000000000000000000000</span></div>
         <div class="setup-row"><span>Block Explorer</span><span class="setup-val">https://testnet.arcscan.app</span></div>
       </div>
-      <div class="info-box">
-        💡 On Arc Testnet, <strong>USDC is the native gas token</strong> — you pay fees in USDC, not ETH. Get free testnet USDC from the Circle Faucet at <strong>faucet.circle.com</strong> (10 USDC/day).
-      </div>
+      <div class="info-box">💡 On Arc Testnet, <strong>USDC is the native gas token</strong> — you pay fees in USDC, not ETH. Get free testnet USDC from the Circle Faucet at <strong>faucet.circle.com</strong> (10 USDC/day).</div>
       <button class="btn-primary" onclick="addArcNetwork()" style="max-width:340px">➕ Add Arc Testnet to MetaMask</button>
     </div>
-
     <div class="card">
-      <div class="card-title">⚡ What is Arc Protocol?</div>
-      <div style="font-size:.9rem;color:var(--text2);line-height:1.85;margin-bottom:1.2rem">Arc is Circle's own Layer-1 EVM blockchain designed for stablecoin finance. USDC is the native gas token — no ETH needed. Supported by 100+ institutions including BlackRock, Visa, and AWS. Sub-second finality powered by the Malachite consensus engine.</div>
+      <div class="card-title">⚡ What is Arctriad?</div>
+      <div style="font-size:.9rem;color:var(--text2);line-height:1.85;margin-bottom:1.2rem">Arctriad is built on Circle's own Layer-1 EVM blockchain designed for stablecoin finance. USDC is the native gas token — no ETH needed. Supported by 100+ institutions including BlackRock, Visa, and AWS. Sub-second finality powered by the Malachite consensus engine.</div>
       <div style="font-size:.9rem;color:var(--text2);line-height:1.85">This DApp lets you make <strong style="color:#60a5fa">real on-chain transactions</strong> on Arc Testnet using MetaMask. Every action charges a <strong style="color:#a78bfa">1 USDC platform fee</strong> sent directly to the builder wallet on-chain.</div>
     </div>
-
     <div class="feature-grid">
       <div class="feature-card"><div class="feature-icon">💸</div><div class="feature-title">USDC Transfers</div><div class="feature-desc">Send USDC on-chain. MetaMask signs each transfer. Real block confirmations with explorer links on arcscan.app.</div></div>
       <div class="feature-card"><div class="feature-icon">🔄</div><div class="feature-title">Token Swaps</div><div class="feature-desc">Swap tokens on Arc. Each swap is a signed MetaMask transaction recorded permanently on-chain.</div></div>
@@ -327,7 +402,6 @@ select option{background:var(--surface2)}
       <div class="feature-card"><div class="feature-icon">⛽</div><div class="feature-title">Gas Paid in USDC</div><div class="feature-desc">No ETH needed. Arc uses USDC as native gas. Predictable costs in dollars — always.</div></div>
       <div class="feature-card"><div class="feature-icon">🔎</div><div class="feature-title">Explorer Links</div><div class="feature-desc">Every transaction links to testnet.arcscan.app so you can verify it on-chain in real time.</div></div>
     </div>
-
     <div class="card">
       <div class="card-title">📈 Arc Testnet Stats</div>
       <div class="arc-stats-row">
@@ -339,9 +413,8 @@ select option{background:var(--surface2)}
         <div class="arc-stat"><div class="arc-stat-val" style="color:var(--orange)">100+</div><div class="arc-stat-lbl">INSTITUTIONS</div></div>
       </div>
     </div>
-
     <div class="card">
-      <div class="card-title">🗺️ Arc Roadmap</div>
+      <div class="card-title">🗺️ Arctriad Roadmap</div>
       <div class="roadmap">
         <div class="roadmap-item"><div class="roadmap-dot done"></div><div class="roadmap-phase">PHASE 1 — COMPLETE</div><div class="roadmap-title">Testnet Launch (Oct 2025)</div><div class="roadmap-desc">Arc Public Testnet live. USDC as native gas, EVM compatibility, Circle faucet, Malachite consensus engine deployed.</div></div>
         <div class="roadmap-item"><div class="roadmap-dot now"></div><div class="roadmap-phase">PHASE 2 — ACTIVE ← YOU ARE HERE</div><div class="roadmap-title">DeFi & NFT Ecosystem</div><div class="roadmap-desc">DEX trading, NFT marketplace, USDC yield locking, real MetaMask DApp integration with on-chain fee routing.</div></div>
@@ -349,11 +422,10 @@ select option{background:var(--surface2)}
         <div class="roadmap-item"><div class="roadmap-dot"></div><div class="roadmap-phase">PHASE 4 — PLANNED</div><div class="roadmap-title">Mainnet</div><div class="roadmap-desc">Full mainnet with real USDC, institutional partnerships, cross-chain CCTP bridges, and FX engine.</div></div>
       </div>
     </div>
-
     <div class="card" style="border-color:rgba(59,130,246,.3);text-align:center">
       <div style="font-size:2rem;margin-bottom:.8rem">🔗</div>
       <div class="card-title" style="justify-content:center">Platform Fee Architecture</div>
-      <div style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:1rem">Every transaction on this DApp sends a <strong style="color:#a78bfa">1 USDC platform fee</strong> on-chain to the builder wallet. This is a real ERC-20 transfer you sign via MetaMask — verifiable on arcscan.app.</div>
+      <div style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:1rem">Every transaction on Arctriad sends a <strong style="color:#a78bfa">1 USDC platform fee</strong> on-chain to the builder wallet. This is a real ERC-20 transfer you sign via MetaMask — verifiable on arcscan.app.</div>
       <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px;font-family:'DM Mono',monospace;font-size:.72rem;color:#a78bfa;word-break:break-all">Fee Recipient: 0xa28f6f51a208a2ea67fcba9d8f8d4f17c0c21df7</div>
       <div style="margin-top:.8rem;font-size:.78rem;color:var(--text3)">Built by <a href="https://x.com/Bash06809279101" target="_blank" style="color:#60a5fa;text-decoration:none">@Bash06809279101</a></div>
     </div>
@@ -379,27 +451,49 @@ select option{background:var(--surface2)}
       <div class="card-title">🔄 Token Swap</div>
       <div class="card-sub">Swap tokens on Arc Testnet — signed via MetaMask</div>
       <div class="fee-notice">⚡ 1 USDC platform fee per swap + USDC gas to Arc network</div>
-      <div class="swap-box">
-        <label>FROM</label>
-        <div class="swap-input-row">
-          <input type="number" id="swap-from-amt" placeholder="0.00" oninput="calcSwap()">
-          <select class="token-badge" id="swap-from-tok" onchange="calcSwap()">
-            <option>USDC</option><option>EURC</option><option>USYC</option>
-          </select>
+
+      <div class="swap-panel-wrap">
+        <!-- FROM -->
+        <div class="swap-side from-side">
+          <div class="swap-side-label">
+            <span class="side-tag">⬆ YOU PAY</span>
+            <span class="side-bal">Balance: <span id="swap-from-bal">—</span> <button class="swap-max-btn" onclick="setMaxSwap()">MAX</button></span>
+          </div>
+          <div class="swap-main-row">
+            <input class="swap-amount-input" id="swap-from-amt" type="text" inputmode="decimal" placeholder="0" oninput="calcSwap()" autocomplete="off">
+            <select class="swap-token-select" id="swap-from-tok" onchange="calcSwap()">
+              <option>USDC</option><option>EURC</option><option>USYC</option>
+            </select>
+          </div>
+          <div class="swap-usd-hint" id="swap-from-usd">≈ $0.00 USD</div>
+        </div>
+
+        <!-- FLIP -->
+        <div style="display:flex;align-items:center;justify-content:center;height:32px">
+          <div class="swap-flip-btn" onclick="flipSwap()">⇅</div>
+        </div>
+
+        <!-- TO -->
+        <div class="swap-side to-side">
+          <div class="swap-side-label">
+            <span class="side-tag">⬇ YOU RECEIVE</span>
+            <span class="side-bal">Balance: <span id="swap-to-bal">—</span></span>
+          </div>
+          <div class="swap-main-row">
+            <input class="swap-amount-input" id="swap-to-amt" type="text" placeholder="0" readonly>
+            <select class="swap-token-select" id="swap-to-tok" onchange="calcSwap()">
+              <option>EURC</option><option>USDC</option><option>USYC</option>
+            </select>
+          </div>
+          <div class="swap-usd-hint" id="swap-to-usd">≈ $0.00 USD</div>
         </div>
       </div>
-      <div class="swap-flip" onclick="flipSwap()">⇅</div>
-      <div class="swap-box">
-        <label>TO (ESTIMATED)</label>
-        <div class="swap-input-row">
-          <input type="number" id="swap-to-amt" placeholder="0.00" readonly>
-          <select class="token-badge" id="swap-to-tok" onchange="calcSwap()">
-            <option>EURC</option><option>USDC</option><option>USYC</option>
-          </select>
-        </div>
+
+      <div class="swap-rate-bar" style="margin-top:10px">
+        <span class="rate-label" id="swap-rate-txt">Enter an amount above to see the exchange rate</span>
+        <span class="rate-val" id="swap-rate-right"></span>
       </div>
-      <div class="swap-rate" id="swap-rate-txt" style="margin-top:.7rem">Enter an amount to see the rate</div>
-      <button class="btn-primary" id="btn-swap" onclick="executeSwap()">Sign & Swap →</button>
+      <button class="btn-primary" id="btn-swap" onclick="executeSwap()" style="margin-top:.4rem">Sign & Swap →</button>
     </div>
   </div>
 
@@ -432,8 +526,8 @@ select option{background:var(--surface2)}
         <div class="post-nft-form">
           <h4>🎨 Create & Post Your NFT on Arc Testnet</h4>
           <div class="form-2col">
-            <div class="form-row" style="margin-bottom:0"><label>NFT NAME</label><input type="text" id="mint-name" placeholder="My Arc NFT"></div>
-            <div class="form-row" style="margin-bottom:0"><label>COLLECTION</label><input type="text" id="mint-collection" placeholder="Arc Originals"></div>
+            <div class="form-row" style="margin-bottom:0"><label>NFT NAME</label><input type="text" id="mint-name" placeholder="My Arctriad NFT"></div>
+            <div class="form-row" style="margin-bottom:0"><label>COLLECTION</label><input type="text" id="mint-collection" placeholder="Arctriad Originals"></div>
           </div>
           <div class="form-row" style="margin-top:.8rem"><label>DESCRIPTION</label><textarea id="mint-desc" placeholder="Describe your NFT..."></textarea></div>
           <div class="form-row"><label>CHOOSE NFT ART</label><div class="emoji-picker" id="emoji-picker"></div></div>
@@ -503,12 +597,12 @@ select option{background:var(--surface2)}
 
 <div class="builder-bar">
   Built by <a href="https://x.com/Bash06809279101" target="_blank">@Bash06809279101</a> &nbsp;·&nbsp;
-  Arc Testnet · Chain 5042002 &nbsp;·&nbsp;
+  Arctriad Testnet · Chain 5042002 &nbsp;·&nbsp;
   Explorer: <a href="https://testnet.arcscan.app" target="_blank">testnet.arcscan.app</a> &nbsp;·&nbsp;
   Faucet: <a href="https://faucet.circle.com" target="_blank">faucet.circle.com</a>
 </div>
 
-<!-- CONFIRM MODAL -->
+<!-- MODALS -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
@@ -521,12 +615,11 @@ select option{background:var(--surface2)}
   </div>
 </div>
 
-<!-- LIST NFT MODAL -->
 <div class="modal-overlay" id="listModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('listModal')">✕</button>
     <h3>🏪 List NFT for Sale</h3>
-    <p style="margin-bottom:1rem">Set a price and post your NFT to the Arc marketplace.</p>
+    <p style="margin-bottom:1rem">Set a price and post your NFT to the Arctriad marketplace.</p>
     <div class="form-row"><label>LISTING PRICE (USDC)</label><input type="number" id="list-price" placeholder="10.00" min="0" step="0.01"></div>
     <div class="fee-notice" style="margin-top:0">⚡ 1 USDC listing fee + USDC gas on Arc</div>
     <div class="modal-btns">
@@ -536,7 +629,6 @@ select option{background:var(--surface2)}
   </div>
 </div>
 
-<!-- PENDING OVERLAY -->
 <div id="tx-pending">
   <div class="tx-pending-box">
     <div class="tx-spinner"></div>
@@ -548,112 +640,35 @@ select option{background:var(--surface2)}
 <div id="toast-wrap"></div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// ARC PROTOCOL TESTNET DAPP — REAL METAMASK
-// Chain: Arc Testnet | Chain ID: 5042002
-// RPC: https://rpc.testnet.arc.network
-// Explorer: https://testnet.arcscan.app
-// USDC: 0x3600000000000000000000000000000000000000
-// Builder: https://x.com/Bash06809279101
-// Fee Wallet: 0xa28f6f51a208a2ea67fcba9d8f8d4f17c0c21df7
-// ═══════════════════════════════════════════════════
+const ARC_CHAIN={chainId:'0x4CE792',chainName:'Arc Testnet',nativeCurrency:{name:'USDC',symbol:'USDC',decimals:18},rpcUrls:['https://rpc.testnet.arc.network'],blockExplorerUrls:['https://testnet.arcscan.app']};
+const USDC_ADDRESS='0x3600000000000000000000000000000000000000';
+const FEE_WALLET='0xa28f6f51a208a2ea67fcba9d8f8d4f17c0c21df7';
+const ARC_CHAIN_ID=5042002;
+const EXPLORER='https://testnet.arcscan.app';
+const ERC20_ABI=['function balanceOf(address) view returns (uint256)','function decimals() view returns (uint8)','function symbol() view returns (string)','function transfer(address to, uint256 amount) returns (bool)','function approve(address spender, uint256 amount) returns (bool)','function allowance(address owner, address spender) view returns (uint256)'];
+const RATES={USDC:{EURC:0.923,USYC:0.998,USDC:1},EURC:{USDC:1.083,USYC:1.081,EURC:1},USYC:{USDC:1.002,EURC:0.925,USYC:1}};
+const EMOJIS=['🚀','💎','🌊','🔥','⚡','🦋','🎭','🎨','👾','🐉','🦄','🌙','⭐','🏆','🎯','🦊','🐺','🌈','💫','🎪','🔮','🌺','🍀','🎸','🤖','🦅','🐬','🏔️','💥','🌟','🎆','🦁','🐯','🎋','🏺','🦩','🐙','🎃','🌀','👑'];
+const BGGRADES=['linear-gradient(135deg,#1e3a5f,#0f2240)','linear-gradient(135deg,#1a1f3c,#0d1224)','linear-gradient(135deg,#1f2d1a,#0d1a0a)','linear-gradient(135deg,#2d1a1a,#1a0a0a)','linear-gradient(135deg,#1a1a2d,#0a0a1a)','linear-gradient(135deg,#2d261a,#1a150a)','linear-gradient(135deg,#0d2233,#071525)','linear-gradient(135deg,#1f1a2d,#0f0a1a)'];
+const DEFAULT_NFTS=[{id:1,name:'Arc Genesis',emoji:'🌊',creator:'arc.eth',price:50,listed:true,owned:false,collection:'Genesis'},{id:2,name:'Protocol Punk #1',emoji:'👾',creator:'punk.eth',price:120,listed:true,owned:false,collection:'Punks'},{id:3,name:'Chain Flame',emoji:'🔥',creator:'flame.eth',price:35,listed:true,owned:false,collection:'Elements'},{id:4,name:'Void Dragon',emoji:'🐉',creator:'void.eth',price:200,listed:true,owned:false,collection:'Legends'},{id:5,name:'Nebula Star',emoji:'⭐',creator:'neb.eth',price:18,listed:true,owned:false,collection:'Cosmos'},{id:6,name:'Arc Unicorn',emoji:'🦄',creator:'magic.eth',price:88,listed:true,owned:false,collection:'Rare'},{id:7,name:'Thunder Eagle',emoji:'🦅',creator:'sky.eth',price:45,listed:true,owned:false,collection:'Wildlife'},{id:8,name:'Cyber Fox',emoji:'🦊',creator:'cyber.eth',price:67,listed:false,owned:true,collection:'Cyber'},{id:9,name:'Moon Rock',emoji:'🌙',creator:'luna.eth',price:30,listed:true,owned:false,collection:'Cosmos'},{id:10,name:'Neon Robot',emoji:'🤖',creator:'dex.eth',price:95,listed:true,owned:false,collection:'Cyber'},{id:11,name:'Rainbow Burst',emoji:'🌈',creator:'color.eth',price:22,listed:true,owned:false,collection:'Elements'},{id:12,name:'Ocean Spirit',emoji:'🐬',creator:'wave.eth',price:55,listed:false,owned:true,collection:'Wildlife'},{id:13,name:'Crystal Trophy',emoji:'🏆',creator:'win.eth',price:150,listed:true,owned:false,collection:'Rare'},{id:14,name:'Magic Orb',emoji:'🔮',creator:'spell.eth',price:80,listed:true,owned:false,collection:'Legends'},{id:15,name:'Arctriad Rocket',emoji:'🚀',creator:'launch.eth',price:110,listed:true,owned:false,collection:'Genesis'},{id:16,name:'Diamond Gem',emoji:'💎',creator:'gem.eth',price:300,listed:true,owned:false,collection:'Rare'},{id:17,name:'Fire Phoenix',emoji:'🦋',creator:'phx.eth',price:175,listed:true,owned:false,collection:'Legends'},{id:18,name:'Storm Wave',emoji:'🌀',creator:'storm.eth',price:42,listed:true,owned:false,collection:'Elements'},{id:19,name:'Gold Lion',emoji:'🦁',creator:'roar.eth',price:220,listed:true,owned:false,collection:'Wildlife'},{id:20,name:'Cosmic Star',emoji:'🌟',creator:'cosmos.eth',price:65,listed:true,owned:false,collection:'Cosmos'}];
 
-const ARC_CHAIN = {
-  chainId: '0x4CE792',                    // 5042002 in hex
-  chainName: 'Arc Testnet',
-  nativeCurrency: { name:'USDC', symbol:'USDC', decimals:18 },
-  rpcUrls: ['https://rpc.testnet.arc.network'],
-  blockExplorerUrls: ['https://testnet.arcscan.app'],
-};
+let state={provider:null,signer:null,address:'',chainId:null,usdcBalance:0n,usdcDecimals:6,nativeBalance:0n,txCount:0,feesPaid:0,lockedUsdc:0,nfts:JSON.parse(JSON.stringify(DEFAULT_NFTS)),locks:[],history:[],selectedNFT:null,lockPeriod:null,lockAPY:null,selectedEmoji:'🚀',liveTxFeed:[]};
 
-// USDC is the native system contract on Arc — ERC-20 interface at this address
-const USDC_ADDRESS  = '0x3600000000000000000000000000000000000000';
-const FEE_WALLET    = '0xa28f6f51a208a2ea67fcba9d8f8d4f17c0c21df7';
-const ARC_CHAIN_ID  = 5042002;
-const EXPLORER      = 'https://testnet.arcscan.app';
-const FAUCET        = 'https://faucet.circle.com';
-
-// USDC ERC-20 ABI (Arc exposes standard ERC-20 interface, uses 6 decimals)
-const ERC20_ABI = [
-  'function balanceOf(address) view returns (uint256)',
-  'function decimals() view returns (uint8)',
-  'function symbol() view returns (string)',
-  'function transfer(address to, uint256 amount) returns (bool)',
-  'function approve(address spender, uint256 amount) returns (bool)',
-  'function allowance(address owner, address spender) view returns (uint256)',
-];
-
-// Arc-native tokens (USDC is native gas, EURC is also on Arc testnet)
-const RATES = {
-  USDC: { EURC:0.923, USYC:0.998, USDC:1 },
-  EURC: { USDC:1.083, USYC:1.081, EURC:1 },
-  USYC: { USDC:1.002, EURC:0.925, USYC:1 },
-};
-
-const EMOJIS = ['🚀','💎','🌊','🔥','⚡','🦋','🎭','🎨','👾','🐉','🦄','🌙','⭐','🏆','🎯','🦊','🐺','🌈','💫','🎪','🔮','🌺','🍀','🎸','🤖','🦅','🐬','🏔️','💥','🌟','🎆','🦁','🐯','🎋','🏺','🦩','🐙','🎃','🌀','👑'];
-const BGGRADES = ['linear-gradient(135deg,#1e3a5f,#0f2240)','linear-gradient(135deg,#1a1f3c,#0d1224)','linear-gradient(135deg,#1f2d1a,#0d1a0a)','linear-gradient(135deg,#2d1a1a,#1a0a0a)','linear-gradient(135deg,#1a1a2d,#0a0a1a)','linear-gradient(135deg,#2d261a,#1a150a)','linear-gradient(135deg,#0d2233,#071525)','linear-gradient(135deg,#1f1a2d,#0f0a1a)'];
-
-const DEFAULT_NFTS = [
-  {id:1,name:'Arc Genesis',emoji:'🌊',creator:'arc.eth',price:50,listed:true,owned:false,collection:'Genesis'},
-  {id:2,name:'Protocol Punk #1',emoji:'👾',creator:'punk.eth',price:120,listed:true,owned:false,collection:'Punks'},
-  {id:3,name:'Chain Flame',emoji:'🔥',creator:'flame.eth',price:35,listed:true,owned:false,collection:'Elements'},
-  {id:4,name:'Void Dragon',emoji:'🐉',creator:'void.eth',price:200,listed:true,owned:false,collection:'Legends'},
-  {id:5,name:'Nebula Star',emoji:'⭐',creator:'neb.eth',price:18,listed:true,owned:false,collection:'Cosmos'},
-  {id:6,name:'Arc Unicorn',emoji:'🦄',creator:'magic.eth',price:88,listed:true,owned:false,collection:'Rare'},
-  {id:7,name:'Thunder Eagle',emoji:'🦅',creator:'sky.eth',price:45,listed:true,owned:false,collection:'Wildlife'},
-  {id:8,name:'Cyber Fox',emoji:'🦊',creator:'cyber.eth',price:67,listed:false,owned:true,collection:'Cyber'},
-  {id:9,name:'Moon Rock',emoji:'🌙',creator:'luna.eth',price:30,listed:true,owned:false,collection:'Cosmos'},
-  {id:10,name:'Neon Robot',emoji:'🤖',creator:'dex.eth',price:95,listed:true,owned:false,collection:'Cyber'},
-  {id:11,name:'Rainbow Burst',emoji:'🌈',creator:'color.eth',price:22,listed:true,owned:false,collection:'Elements'},
-  {id:12,name:'Ocean Spirit',emoji:'🐬',creator:'wave.eth',price:55,listed:false,owned:true,collection:'Wildlife'},
-  {id:13,name:'Crystal Trophy',emoji:'🏆',creator:'win.eth',price:150,listed:true,owned:false,collection:'Rare'},
-  {id:14,name:'Magic Orb',emoji:'🔮',creator:'spell.eth',price:80,listed:true,owned:false,collection:'Legends'},
-  {id:15,name:'Arc Rocket',emoji:'🚀',creator:'launch.eth',price:110,listed:true,owned:false,collection:'Genesis'},
-  {id:16,name:'Diamond Gem',emoji:'💎',creator:'gem.eth',price:300,listed:true,owned:false,collection:'Rare'},
-  {id:17,name:'Fire Phoenix',emoji:'🦋',creator:'phx.eth',price:175,listed:true,owned:false,collection:'Legends'},
-  {id:18,name:'Storm Wave',emoji:'🌀',creator:'storm.eth',price:42,listed:true,owned:false,collection:'Elements'},
-  {id:19,name:'Gold Lion',emoji:'🦁',creator:'roar.eth',price:220,listed:true,owned:false,collection:'Wildlife'},
-  {id:20,name:'Cosmic Star',emoji:'🌟',creator:'cosmos.eth',price:65,listed:true,owned:false,collection:'Cosmos'},
-];
-
-let state = {
-  provider:null, signer:null, address:'', chainId:null,
-  usdcBalance:0n, usdcDecimals:6, nativeBalance:0n,
-  txCount:0, feesPaid:0, lockedUsdc:0,
-  nfts:JSON.parse(JSON.stringify(DEFAULT_NFTS)),
-  locks:[], history:[],
-  selectedNFT:null, lockPeriod:null, lockAPY:null, selectedEmoji:'🚀',
-};
-
-// ── HELPERS ──
-function explorerTx(h){ return `${EXPLORER}/tx/${h}`; }
-function explorerAddr(a){ return `${EXPLORER}/address/${a}`; }
-function short(a){ return a.slice(0,6)+'...'+a.slice(-4); }
+function explorerTx(h){return`${EXPLORER}/tx/${h}`;}
+function short(a){return a.slice(0,6)+'...'+a.slice(-4);}
 
 function switchTab(tab){
-  document.querySelectorAll('.tab-btn').forEach(b=>{
-    const t=b.textContent.toLowerCase();
-    b.classList.toggle('active',
-      (tab==='overview'&&t.includes('overview'))||(tab==='transfer'&&t.includes('transfer'))||
-      (tab==='swap'&&t.includes('swap'))||(tab==='nft'&&t.includes('nft'))||
-      (tab==='lock'&&t.includes('lock'))||(tab==='dashboard'&&t.includes('dashboard')));
-  });
+  document.querySelectorAll('.tab-btn').forEach(b=>{const t=b.textContent.toLowerCase();b.classList.toggle('active',(tab==='overview'&&t.includes('overview'))||(tab==='transfer'&&t.includes('transfer'))||(tab==='swap'&&t.includes('swap'))||(tab==='nft'&&t.includes('nft'))||(tab==='lock'&&t.includes('lock'))||(tab==='dashboard'&&t.includes('dashboard')));});
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+tab).classList.add('active');
-  if(tab==='dashboard') refreshDashboard();
-  if(tab==='nft') renderAll();
+  if(tab==='dashboard')refreshDashboard();
+  if(tab==='nft')renderAll();
 }
 
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function showPending(title,msg){document.getElementById('tx-pending-title').textContent=title||'Waiting for MetaMask…';document.getElementById('tx-pending-msg').textContent=msg||'Please confirm in your wallet';document.getElementById('tx-pending').classList.add('show');}
+function hidePending(){document.getElementById('tx-pending').classList.remove('show');}
 
-function showPending(title, msg){
-  document.getElementById('tx-pending-title').textContent = title||'Waiting for MetaMask…';
-  document.getElementById('tx-pending-msg').textContent   = msg||'Please confirm in your wallet';
-  document.getElementById('tx-pending').classList.add('show');
-}
-function hidePending(){ document.getElementById('tx-pending').classList.remove('show'); }
-
-function toast(title, msg, type='info', hash=''){
+function toast(title,msg,type='info',hash=''){
   const icons={success:'✅',error:'❌',info:'💡',warn:'⚠️'};
   const el=document.createElement('div');
   el.className='toast '+type;
@@ -664,566 +679,459 @@ function toast(title, msg, type='info', hash=''){
 }
 
 function needWallet(){
-  if(!state.address){ toast('Not Connected','Connect MetaMask to Arc Testnet first.','error'); return false; }
-  if(Number(state.chainId)!==ARC_CHAIN_ID){ toast('Wrong Network','Please switch to Arc Testnet (Chain 5042002).','warn'); return false; }
+  if(!state.address){toast('Not Connected','Connect MetaMask to Arc Testnet first.','error');return false;}
+  if(Number(state.chainId)!==ARC_CHAIN_ID){toast('Wrong Network','Please switch to Arc Testnet (Chain 5042002).','warn');return false;}
   return true;
 }
 
-function setLoading(id, on){
-  const btn=document.getElementById(id); if(!btn) return;
+function setLoading(id,on){
+  const btn=document.getElementById(id);if(!btn)return;
   btn.disabled=on;
-  if(on){ btn.dataset.orig=btn.innerHTML; btn.innerHTML=`<div class="tx-spinner" style="width:20px;height:20px;border-width:2px;margin:0 8px 0 0"></div>Signing…`; }
-  else{ btn.innerHTML=btn.dataset.orig||''; btn.disabled=false; }
+  if(on){btn.dataset.orig=btn.innerHTML;btn.innerHTML=`<div class="tx-spinner" style="width:20px;height:20px;border-width:2px;margin:0 8px 0 0"></div>Signing…`;}
+  else{btn.innerHTML=btn.dataset.orig||'';btn.disabled=false;}
 }
 
-// ── CONNECT ──
+function pushLiveTx(type,desc,hash){
+  const icons={transfer:'💸',swap:'🔄',nft:'🖼️',lock:'🔒',fee:'⚡'};
+  state.liveTxFeed.unshift({type,desc,hash,icon:icons[type]||'📝',time:new Date().toLocaleTimeString()});
+  if(state.liveTxFeed.length>50)state.liveTxFeed.pop();
+  renderLiveTicker();
+}
+
+function renderLiveTicker(){
+  const scroll=document.getElementById('live-tx-scroll');
+  const total=document.getElementById('live-tx-total');
+  if(!scroll)return;
+  total.textContent=state.liveTxFeed.length;
+  if(!state.liveTxFeed.length){scroll.innerHTML='<div class="live-empty">No transactions yet — connect your wallet to get started</div>';return;}
+  scroll.innerHTML=state.liveTxFeed.slice(0,30).map(t=>{
+    const link=t.hash?`<a href="${explorerTx(t.hash)}" target="_blank" style="color:var(--accent);text-decoration:none">${t.hash.slice(0,10)}…↗</a>`:'pending';
+    return`<div class="live-chip chip-${t.type}"><span class="live-chip-icon">${t.icon}</span><span class="live-chip-text"><strong>${t.desc}</strong></span><span class="live-chip-time">${t.time} · ${link}</span></div>`;
+  }).join('');
+  scroll.scrollLeft=0;
+}
+
+function showLiveBanner(){document.getElementById('live-tx-banner').style.display='block';}
+
 async function connectWallet(){
-  if(!window.ethereum){
-    toast('MetaMask Not Found','Install MetaMask at metamask.io — then add Arc Testnet.','error');
-    window.open('https://metamask.io/download/','_blank');
-    return;
-  }
+  if(!window.ethereum){toast('MetaMask Not Found','Install MetaMask at metamask.io — then add Arc Testnet.','error');window.open('https://metamask.io/download/','_blank');return;}
   try{
     const btn=document.getElementById('connectBtn');
-    btn.disabled=true; btn.textContent='Connecting…';
+    btn.disabled=true;btn.textContent='Connecting…';
     const accounts=await window.ethereum.request({method:'eth_requestAccounts'});
     await setupProvider(accounts[0]);
-    window.ethereum.on('accountsChanged',async a=>{ if(!a.length) disconnectWallet(); else await setupProvider(a[0]); });
+    window.ethereum.on('accountsChanged',async a=>{if(!a.length)disconnectWallet();else await setupProvider(a[0]);});
     window.ethereum.on('chainChanged',()=>window.location.reload());
-  } catch(err){
+  }catch(err){
     document.getElementById('connectBtn').disabled=false;
     document.getElementById('connectBtn').textContent='Connect MetaMask';
-    if(err.code===4001) toast('Rejected','Connection cancelled by user.','warn');
+    if(err.code===4001)toast('Rejected','Connection cancelled by user.','warn');
     else toast('Connection Failed',err.message,'error');
   }
 }
 
 async function setupProvider(account){
-  state.provider = new ethers.BrowserProvider(window.ethereum);
-  state.signer   = await state.provider.getSigner();
-  state.address  = account;
-  state.chainId  = Number((await state.provider.getNetwork()).chainId);
-  const onArc    = state.chainId === ARC_CHAIN_ID;
-  document.getElementById('chain-alert').classList.toggle('show', !onArc);
-  document.getElementById('net-name').textContent = onArc ? 'ARC TESTNET' : 'WRONG NETWORK';
-  document.getElementById('connectBtn').textContent = short(account);
-  document.getElementById('connectBtn').disabled = false;
-  document.getElementById('walletAddr').textContent = account;
+  state.provider=new ethers.BrowserProvider(window.ethereum);
+  state.signer=await state.provider.getSigner();
+  state.address=account;
+  state.chainId=Number((await state.provider.getNetwork()).chainId);
+  const onArc=state.chainId===ARC_CHAIN_ID;
+  document.getElementById('chain-alert').classList.toggle('show',!onArc);
+  document.getElementById('net-name').textContent=onArc?'ARC TESTNET':'WRONG NETWORK';
+  document.getElementById('connectBtn').textContent=short(account);
+  document.getElementById('connectBtn').disabled=false;
+  document.getElementById('walletAddr').textContent=account;
   document.getElementById('wallet-status').classList.add('active');
-  if(onArc) await loadBalances();
-  toast('Connected!', `Wallet: ${short(account)} on ${onArc?'Arc Testnet':'wrong network'}`, onArc?'success':'warn');
+  showLiveBanner();
+  if(onArc)await loadBalances();
+  toast('Connected!',`Wallet: ${short(account)} on ${onArc?'Arc Testnet':'wrong network'}`,onArc?'success':'warn');
 }
 
 function disconnectWallet(){
-  state.provider=null; state.signer=null; state.address='';
+  state.provider=null;state.signer=null;state.address='';
   document.getElementById('wallet-status').classList.remove('active');
   document.getElementById('connectBtn').textContent='Connect MetaMask';
   document.getElementById('connectBtn').disabled=false;
 }
 
-// ── BALANCES ──
 async function loadBalances(){
-  if(!state.provider||!state.address) return;
+  if(!state.provider||!state.address)return;
   try{
-    // Native balance (USDC native, 18 decimals)
-    state.nativeBalance = await state.provider.getBalance(state.address);
-    // ERC-20 USDC interface (6 decimals)
+    state.nativeBalance=await state.provider.getBalance(state.address);
     try{
-      const usdc = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, state.provider);
-      const [bal, dec] = await Promise.all([usdc.balanceOf(state.address), usdc.decimals()]);
-      state.usdcBalance  = bal;
-      state.usdcDecimals = Number(dec);
-    } catch{ state.usdcBalance = 0n; state.usdcDecimals = 6; }
+      const usdc=new ethers.Contract(USDC_ADDRESS,ERC20_ABI,state.provider);
+      const[bal,dec]=await Promise.all([usdc.balanceOf(state.address),usdc.decimals()]);
+      state.usdcBalance=bal;state.usdcDecimals=Number(dec);
+    }catch{state.usdcBalance=0n;state.usdcDecimals=6;}
     updateBalUI();
-  } catch(e){ console.warn('Balance error:',e.message); }
+  }catch(e){console.warn('Balance error:',e.message);}
 }
 
-function fmtUsdc(raw){ return (Number(raw)/10**state.usdcDecimals).toFixed(4); }
-function fmtNative(raw){ return parseFloat(ethers.formatEther(raw)).toFixed(4); }
-function parseUsdc(n){ return BigInt(Math.floor(n * 10**state.usdcDecimals)); }
+function fmtUsdc(raw){return(Number(raw)/10**state.usdcDecimals).toFixed(4);}
+function fmtNative(raw){return parseFloat(ethers.formatEther(raw)).toFixed(4);}
+function parseUsdc(n){return BigInt(Math.floor(n*10**state.usdcDecimals));}
 
 function updateBalUI(){
-  document.getElementById('usdcBalance').textContent  = fmtUsdc(state.usdcBalance);
-  document.getElementById('gasBalance').textContent   = fmtNative(state.nativeBalance);
-  document.getElementById('txCountBal').textContent   = state.txCount;
-  document.getElementById('avail-transfer').textContent = fmtUsdc(state.usdcBalance) + ' USDC';
+  document.getElementById('usdcBalance').textContent=fmtUsdc(state.usdcBalance);
+  document.getElementById('gasBalance').textContent=fmtNative(state.nativeBalance);
+  document.getElementById('txCountBal').textContent=state.txCount;
+  document.getElementById('avail-transfer').textContent=fmtUsdc(state.usdcBalance)+' USDC';
+  const bal=fmtUsdc(state.usdcBalance)+' USDC';
+  document.getElementById('swap-from-bal').textContent=bal;
+  document.getElementById('swap-to-bal').textContent=bal;
 }
 
-// ── ADD / SWITCH NETWORK ──
 async function addArcNetwork(){
-  if(!window.ethereum){ toast('MetaMask Not Found','Install MetaMask first.','error'); return; }
-  try{
-    await window.ethereum.request({method:'wallet_addEthereumChain', params:[ARC_CHAIN]});
-    toast('Arc Testnet Added!','Network added to MetaMask. Get USDC from faucet.circle.com','success');
-  } catch(err){ toast('Failed to Add Network', err.message, 'error'); }
+  if(!window.ethereum){toast('MetaMask Not Found','Install MetaMask first.','error');return;}
+  try{await window.ethereum.request({method:'wallet_addEthereumChain',params:[ARC_CHAIN]});toast('Arc Testnet Added!','Network added to MetaMask. Get USDC from faucet.circle.com','success');}
+  catch(err){toast('Failed to Add Network',err.message,'error');}
 }
 
 async function switchToArc(){
-  try{
-    await window.ethereum.request({method:'wallet_switchEthereumChain', params:[{chainId:ARC_CHAIN.chainId}]});
-  } catch(err){
-    if(err.code===4902) await addArcNetwork();
-    else toast('Switch Failed', err.message, 'error');
-  }
+  try{await window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:ARC_CHAIN.chainId}]});}
+  catch(err){if(err.code===4902)await addArcNetwork();else toast('Switch Failed',err.message,'error');}
 }
 
-// ── SEND FEE ──
-// Sends 1 USDC to builder wallet as real on-chain ERC-20 transfer
 async function sendFee(){
-  const usdc = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, state.signer);
-  const tx   = await usdc.transfer(FEE_WALLET, parseUsdc(1));
+  const usdc=new ethers.Contract(USDC_ADDRESS,ERC20_ABI,state.signer);
+  const tx=await usdc.transfer(FEE_WALLET,parseUsdc(1));
   await tx.wait();
-  state.feesPaid += 1;
-  state.txCount++;
-  addHistory('fee', '1 USDC platform fee → builder', tx.hash);
+  state.feesPaid+=1;state.txCount++;
+  addHistory('fee','1 USDC platform fee → builder',tx.hash);
+  pushLiveTx('fee','1 USDC fee → builder',tx.hash);
   return tx.hash;
 }
 
-// ── HISTORY ──
-function addHistory(type, desc, hash, status='confirmed'){
+function addHistory(type,desc,hash,status='confirmed'){
   const icons={transfer:'💸',swap:'🔄',nft:'🖼️',lock:'🔒',fee:'⚡'};
-  state.history.unshift({type, desc, hash, icon:icons[type]||'📝', time:new Date().toLocaleTimeString(), status});
-  if(state.history.length>100) state.history.pop();
+  state.history.unshift({type,desc,hash,icon:icons[type]||'📝',time:new Date().toLocaleTimeString(),status});
+  if(state.history.length>100)state.history.pop();
   renderHistory();
 }
 
 function renderHistory(){
   const el=document.getElementById('tx-log');
-  if(!state.history.length){ el.innerHTML='<div style="color:var(--text3);font-family:\'DM Mono\',monospace;font-size:.8rem">No transactions yet.</div>'; return; }
+  if(!state.history.length){el.innerHTML='<div style="color:var(--text3);font-family:\'DM Mono\',monospace;font-size:.8rem">No transactions yet.</div>';return;}
   el.innerHTML=state.history.slice(0,50).map(h=>{
-    const badge = h.status==='pending' ? `<div class="tx-status-pend">⏳ Pending</div>` :
-                  h.status==='failed'  ? `<div class="tx-status-fail">✗ Failed</div>` :
-                  `<div class="tx-status-ok">✓ Confirmed</div>`;
-    const link  = h.hash ? `<a href="${explorerTx(h.hash)}" target="_blank">${h.hash.slice(0,20)}… ↗</a>` : 'No hash';
-    return `<div class="tx-item">
-      <div class="tx-left">
-        <div class="tx-icon ${h.type}">${h.icon}</div>
-        <div><div class="tx-desc">${h.desc}</div><div class="tx-hash">${link} · ${h.time}</div></div>
-      </div>
-      <div style="text-align:right">${badge}<div style="font-size:.7rem;color:var(--text3)">${h.type.toUpperCase()}</div></div>
-    </div>`;
+    const badge=h.status==='pending'?`<div class="tx-status-pend">⏳ Pending</div>`:h.status==='failed'?`<div class="tx-status-fail">✗ Failed</div>`:`<div class="tx-status-ok">✓ Confirmed</div>`;
+    const link=h.hash?`<a href="${explorerTx(h.hash)}" target="_blank">${h.hash.slice(0,20)}… ↗</a>`:'No hash';
+    return`<div class="tx-item"><div class="tx-left"><div class="tx-icon ${h.type}">${h.icon}</div><div><div class="tx-desc">${h.desc}</div><div class="tx-hash">${link} · ${h.time}</div></div></div><div style="text-align:right">${badge}<div style="font-size:.7rem;color:var(--text3)">${h.type.toUpperCase()}</div></div></div>`;
   }).join('');
 }
 
-// ── CONFIRM ──
+function refreshDashboard(){
+  document.getElementById('dash-usdc').textContent=state.address?fmtUsdc(state.usdcBalance):'—';
+  document.getElementById('dash-gas').textContent=state.address?fmtNative(state.nativeBalance):'—';
+  document.getElementById('dash-locked').textContent=state.lockedUsdc.toFixed(2);
+  document.getElementById('dash-nfts').textContent=state.nfts.filter(n=>n.owned).length;
+  document.getElementById('dash-tx').textContent=state.txCount;
+  document.getElementById('dash-fees').textContent=state.feesPaid+' USDC';
+}
+
 let _cb=null;
-function showConfirm(title, body, cb){
-  document.getElementById('confirm-title').textContent = title;
-  document.getElementById('confirm-body').innerHTML = body;
+function showConfirm(title,body,cb){
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-body').innerHTML=body;
   _cb=cb;
-  document.getElementById('confirm-ok').onclick=()=>{ closeModal('confirmModal'); _cb&&_cb(); _cb=null; };
+  document.getElementById('confirm-ok').onclick=()=>{closeModal('confirmModal');_cb&&_cb();_cb=null;};
   document.getElementById('confirmModal').classList.add('open');
 }
 
-// ══════════════════════════════════════
-// TRANSFER
-// ══════════════════════════════════════
+// ── TRANSFER ──
 async function executeTransfer(){
-  if(!needWallet()) return;
-  const to  = document.getElementById('transfer-to').value.trim();
-  const amt = parseFloat(document.getElementById('transfer-amount').value);
-  if(!ethers.isAddress(to)){ toast('Invalid Address','Enter a valid 0x wallet address.','error'); return; }
-  if(!amt||amt<=0){ toast('Invalid Amount','Enter a USDC amount greater than 0.','error'); return; }
-  if(state.usdcBalance < parseUsdc(amt+1)){
-    toast('Insufficient USDC',`You need ${(amt+1).toFixed(2)} USDC (amount + 1 platform fee). Get free USDC at faucet.circle.com`,'error'); return;
-  }
-  showConfirm('💸 Confirm USDC Transfer',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>To</span><span class="cd-val">${short(to)}</span></div>
-      <div class="cd-row"><span>Amount</span><span class="cd-val">${amt} USDC</span></div>
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div>
-      <div class="cd-row"><span>Total Cost</span><span class="cd-val">${(amt+1).toFixed(2)} USDC + gas</span></div>
-      <div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask will ask you to sign 2 transactions</div>
-    </div>`, async()=>{
+  if(!needWallet())return;
+  const to=document.getElementById('transfer-to').value.trim();
+  const amt=parseFloat(document.getElementById('transfer-amount').value);
+  if(!ethers.isAddress(to)){toast('Invalid Address','Enter a valid 0x wallet address.','error');return;}
+  if(!amt||amt<=0){toast('Invalid Amount','Enter a USDC amount greater than 0.','error');return;}
+  if(state.usdcBalance<parseUsdc(amt+1)){toast('Insufficient USDC',`You need ${(amt+1).toFixed(2)} USDC. Get free USDC at faucet.circle.com`,'error');return;}
+  showConfirm('💸 Confirm USDC Transfer',`<div class="confirm-detail"><div class="cd-row"><span>To</span><span class="cd-val">${short(to)}</span></div><div class="cd-row"><span>Amount</span><span class="cd-val">${amt} USDC</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div><div class="cd-row"><span>Total Cost</span><span class="cd-val">${(amt+1).toFixed(2)} USDC + gas</span></div><div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask will ask you to sign 2 transactions</div></div>`,async()=>{
     try{
-      setLoading('btn-transfer', true);
-      const usdc = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, state.signer);
-      // TX 1 — Transfer USDC to recipient
-      showPending('Sending USDC…', `Sign TX 1/2: Send ${amt} USDC to ${short(to)}`);
-      const tx1 = await usdc.transfer(to, parseUsdc(amt));
-      const idx = state.history.length;
-      addHistory('transfer', `${amt} USDC → ${short(to)}`, tx1.hash, 'pending');
-      showPending('Confirming on Arc…', 'Waiting for block confirmation on Arc Testnet…');
+      setLoading('btn-transfer',true);
+      const usdc=new ethers.Contract(USDC_ADDRESS,ERC20_ABI,state.signer);
+      showPending('Sending USDC…',`Sign TX 1/2: Send ${amt} USDC to ${short(to)}`);
+      const tx1=await usdc.transfer(to,parseUsdc(amt));
+      addHistory('transfer',`${amt} USDC → ${short(to)}`,tx1.hash,'pending');
+      pushLiveTx('transfer',`${amt} USDC → ${short(to)}`,tx1.hash);
+      showPending('Confirming on Arc…','Waiting for block confirmation…');
       await tx1.wait();
       state.txCount++;
-      const i = state.history.findIndex(h=>h.hash===tx1.hash);
-      if(i>=0) state.history[i].status='confirmed';
+      const i=state.history.findIndex(h=>h.hash===tx1.hash);
+      if(i>=0)state.history[i].status='confirmed';
       renderHistory();
-      // TX 2 — Platform fee
-      showPending('Platform Fee…', 'Sign TX 2/2: 1 USDC fee to builder wallet');
+      showPending('Platform Fee…','Sign TX 2/2: 1 USDC fee to builder wallet');
       await sendFee();
       hidePending();
       await loadBalances();
       document.getElementById('transfer-to').value='';
       document.getElementById('transfer-amount').value='';
-      toast('Transfer Complete!', `${amt} USDC sent to ${short(to)}`, 'success', tx1.hash);
-    } catch(err){
+      toast('Transfer Complete!',`${amt} USDC sent to ${short(to)}`,'success',tx1.hash);
+    }catch(err){
       hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Transaction cancelled by user.','warn');
-      else toast('Transfer Failed', err.shortMessage||err.message, 'error');
-    } finally{ setLoading('btn-transfer', false); }
+      if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Transaction cancelled.','warn');
+      else toast('Transfer Failed',err.shortMessage||err.message,'error');
+    }finally{setLoading('btn-transfer',false);}
   });
 }
 
-// ══════════════════════════════════════
-// SWAP
-// ══════════════════════════════════════
+// ── SWAP ──
 function calcSwap(){
   const f=document.getElementById('swap-from-tok').value;
   const t=document.getElementById('swap-to-tok').value;
-  const a=parseFloat(document.getElementById('swap-from-amt').value)||0;
-  if(f===t){ document.getElementById('swap-to-amt').value=a.toFixed(4); return; }
+  const raw=document.getElementById('swap-from-amt').value.replace(/[^0-9.]/g,'');
+  const a=parseFloat(raw)||0;
   const rate=RATES[f]?.[t]||1;
-  document.getElementById('swap-to-amt').value=(a*rate).toFixed(6);
-  document.getElementById('swap-rate-txt').textContent=`1 ${f} = ${rate} ${t} · Simulated Arc DEX rate`;
+  const out=f===t?a:a*rate;
+  document.getElementById('swap-to-amt').value=a>0?out.toFixed(4):'';
+  const usdRates={USDC:1,EURC:1.083,USYC:1.002};
+  const fromUsd=(a*(usdRates[f]||1)).toFixed(2);
+  const toUsd=(out*(usdRates[t]||1)).toFixed(2);
+  document.getElementById('swap-from-usd').textContent=a>0?`≈ $${fromUsd} USD`:'≈ $0.00 USD';
+  document.getElementById('swap-to-usd').textContent=a>0?`≈ $${toUsd} USD`:'≈ $0.00 USD';
+  if(a>0&&f!==t){
+    document.getElementById('swap-rate-txt').textContent=`1 ${f} = ${rate} ${t}`;
+    document.getElementById('swap-rate-right').textContent=`${a} ${f} → ${out.toFixed(4)} ${t}`;
+  }else{
+    document.getElementById('swap-rate-txt').textContent='Enter an amount above to see the exchange rate';
+    document.getElementById('swap-rate-right').textContent='';
+  }
 }
+
+function setMaxSwap(){
+  const bal=state.address?fmtUsdc(state.usdcBalance):'0';
+  document.getElementById('swap-from-amt').value=parseFloat(bal)>0?(parseFloat(bal)-1).toFixed(2):'0';
+  calcSwap();
+}
+
 function flipSwap(){
   const ft=document.getElementById('swap-from-tok'),tt=document.getElementById('swap-to-tok');
   const fa=document.getElementById('swap-from-amt'),ta=document.getElementById('swap-to-amt');
-  [ft.value,tt.value]=[tt.value,ft.value]; fa.value=ta.value||''; calcSwap();
+  [ft.value,tt.value]=[tt.value,ft.value];
+  fa.value=ta.value||'';
+  calcSwap();
 }
 
 async function executeSwap(){
-  if(!needWallet()) return;
+  if(!needWallet())return;
   const from=document.getElementById('swap-from-tok').value;
-  const to  =document.getElementById('swap-to-tok').value;
-  const amt =parseFloat(document.getElementById('swap-from-amt').value);
-  const out =document.getElementById('swap-to-amt').value;
-  if(!amt||amt<=0){ toast('Invalid Amount','Enter a swap amount.','error'); return; }
-  if(from===to){ toast('Same Token','Select different tokens to swap.','warn'); return; }
-  showConfirm('🔄 Confirm Swap',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>From</span><span class="cd-val">${amt} ${from}</span></div>
-      <div class="cd-row"><span>To</span><span class="cd-val">≈ ${out} ${to}</span></div>
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div>
-      <div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask signs 1 transaction on Arc Testnet</div>
-    </div>`, async()=>{
+  const to=document.getElementById('swap-to-tok').value;
+  const amt=parseFloat(document.getElementById('swap-from-amt').value)||0;
+  const out=document.getElementById('swap-to-amt').value||'0';
+  if(!amt||amt<=0){toast('Invalid Amount','Enter a swap amount.','error');return;}
+  if(from===to){toast('Same Token','Select different tokens to swap.','warn');return;}
+  showConfirm('🔄 Confirm Swap',`<div class="confirm-detail"><div class="cd-row"><span>From</span><span class="cd-val">${amt} ${from}</span></div><div class="cd-row"><span>To</span><span class="cd-val">≈ ${out} ${to}</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div><div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask signs 1 transaction on Arc Testnet</div></div>`,async()=>{
     try{
-      setLoading('btn-swap', true);
-      showPending('Recording Swap on Arc…','Sign: 1 USDC platform fee records your swap on-chain');
-      const feeTx = await sendFee();
+      setLoading('btn-swap',true);
+      showPending('Recording Swap on Arctriad…','Sign: 1 USDC platform fee records your swap on-chain');
+      const feeTx=await sendFee();
       state.txCount++;
-      addHistory('swap', `${amt} ${from} → ${out} ${to}`, feeTx);
+      addHistory('swap',`${amt} ${from} → ${out} ${to}`,feeTx);
+      pushLiveTx('swap',`${amt} ${from} → ${out} ${to}`,feeTx);
       hidePending();
       await loadBalances();
       document.getElementById('swap-from-amt').value='';
       document.getElementById('swap-to-amt').value='';
-      toast('Swap Recorded!', `${amt} ${from} → ${out} ${to} on Arc Testnet`, 'success', feeTx);
-    } catch(err){
+      document.getElementById('swap-from-usd').textContent='≈ $0.00 USD';
+      document.getElementById('swap-to-usd').textContent='≈ $0.00 USD';
+      document.getElementById('swap-rate-txt').textContent='Enter an amount above to see the exchange rate';
+      document.getElementById('swap-rate-right').textContent='';
+      toast('Swap Recorded!',`${amt} ${from} → ${out} ${to} on Arctriad`,'success',feeTx);
+    }catch(err){
       hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Swap cancelled.','warn');
-      else toast('Swap Failed', err.shortMessage||err.message, 'error');
-    } finally{ setLoading('btn-swap', false); }
+      if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Swap cancelled.','warn');
+      else toast('Swap Failed',err.shortMessage||err.message,'error');
+    }finally{setLoading('btn-swap',false);}
   });
 }
 
-// ══════════════════════════════════════
-// NFT
-// ══════════════════════════════════════
+// ── NFT ──
 function switchNFTTab(tab){
-  document.querySelectorAll('.nft-tab').forEach(b=>b.classList.toggle('active',
-    (tab==='all'&&b.textContent.includes('All'))||(tab==='mine'&&b.textContent.includes('My'))||
-    (tab==='listed'&&b.textContent.includes('Sale'))||(tab==='post'&&b.textContent.includes('Post'))));
+  document.querySelectorAll('.nft-tab').forEach(b=>b.classList.toggle('active',(tab==='all'&&b.textContent.includes('All'))||(tab==='mine'&&b.textContent.includes('My'))||(tab==='listed'&&b.textContent.includes('Sale'))||(tab==='post'&&b.textContent.includes('Post'))));
   ['all','mine','listed','post'].forEach(v=>document.getElementById('nft-view-'+v).style.display=v===tab?'':'none');
   renderAll();
 }
 
 function renderAll(){
-  renderGrid('nft-grid-all',  state.nfts, 'all');
-  renderGrid('nft-grid-mine', state.nfts.filter(n=>n.owned), 'mine');
-  renderGrid('nft-grid-listed', state.nfts.filter(n=>n.listed), 'listed');
+  renderGrid('nft-grid-all',state.nfts,'all');
+  renderGrid('nft-grid-mine',state.nfts.filter(n=>n.owned),'mine');
+  renderGrid('nft-grid-listed',state.nfts.filter(n=>n.listed),'listed');
 }
 
-function renderGrid(id, nfts, mode){
-  const el=document.getElementById(id); if(!el) return;
-  if(!nfts.length){
-    el.innerHTML=`<div style="color:var(--text3);font-family:'DM Mono',monospace;font-size:.82rem;grid-column:1/-1;padding:1rem 0">${mode==='mine'?'No NFTs in your wallet yet.':mode==='listed'?'No NFTs listed for sale.':'No NFTs found.'}</div>`;
-    return;
-  }
+function renderGrid(id,nfts,mode){
+  const el=document.getElementById(id);if(!el)return;
+  if(!nfts.length){el.innerHTML=`<div style="color:var(--text3);font-family:'DM Mono',monospace;font-size:.82rem;grid-column:1/-1;padding:1rem 0">${mode==='mine'?'No NFTs in your wallet yet.':mode==='listed'?'No NFTs listed for sale.':'No NFTs found.'}</div>`;return;}
   el.innerHTML=nfts.map((n,i)=>{
     const sel=state.selectedNFT===n.id;
-    return `<div class="nft-card ${sel?'selected':''} ${n.listed?'listed-card':''}" onclick="selectNFT(${n.id})">
-      <div class="nft-img" style="background:${BGGRADES[i%BGGRADES.length]}">
-        ${n.listed?'<div class="nft-badge listed">FOR SALE</div>':n.owned?'<div class="nft-badge owned">OWNED</div>':''}
-        <div class="nft-img-emoji">${n.emoji}</div>
-      </div>
-      <div class="nft-info">
-        <div class="nft-name">${n.name}</div>
-        <div class="nft-creator">by ${n.creator||'you.eth'}</div>
-        <div class="nft-coll">${n.collection}</div>
-        ${n.listed?`<div class="nft-price">💰 ${n.price} USDC</div>`:''}
-        ${n.listed&&!n.owned?`<div class="nft-actions"><button class="btn-sm" onclick="event.stopPropagation();buyNFT(${n.id})">Buy Now</button></div>`:''}
-      </div>
-    </div>`;
+    return`<div class="nft-card ${sel?'selected':''} ${n.listed?'listed-card':''}" onclick="selectNFT(${n.id})"><div class="nft-img" style="background:${BGGRADES[i%BGGRADES.length]}">${n.listed?'<div class="nft-badge listed">FOR SALE</div>':n.owned?'<div class="nft-badge owned">OWNED</div>':''}<div class="nft-img-emoji">${n.emoji}</div></div><div class="nft-info"><div class="nft-name">${n.name}</div><div class="nft-creator">by ${n.creator||'you.eth'}</div><div class="nft-coll">${n.collection}</div>${n.listed?`<div class="nft-price">💰 ${n.price} USDC</div>`:''}${n.listed&&!n.owned?`<div class="nft-actions"><button class="btn-sm" onclick="event.stopPropagation();buyNFT(${n.id})">Buy Now</button></div>`:''}</div></div>`;
   }).join('');
 }
 
 function selectNFT(id){
-  state.selectedNFT = state.selectedNFT===id ? null : id;
+  state.selectedNFT=state.selectedNFT===id?null:id;
   renderAll();
   const s=document.getElementById('nft-transfer-section');
-  if(s) s.style.display = state.selectedNFT ? 'block' : 'none';
+  if(s)s.style.display=state.selectedNFT?'block':'none';
 }
 
 async function buyNFT(id){
-  if(!needWallet()) return;
-  const n=state.nfts.find(x=>x.id===id); if(!n) return;
-  const total = n.price + 1;
-  if(Number(fmtUsdc(state.usdcBalance)) < total){
-    toast('Insufficient USDC',`Need ${total} USDC. Get free USDC at faucet.circle.com`,'error'); return;
-  }
-  showConfirm('🛒 Buy NFT on Arc',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>NFT</span><span class="cd-val">${n.emoji} ${n.name}</span></div>
-      <div class="cd-row"><span>Price</span><span class="cd-val">${n.price} USDC</span></div>
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder</span></div>
-      <div class="cd-row"><span>Total</span><span class="cd-val">${total} USDC + gas</span></div>
-    </div>`, async()=>{
+  if(!needWallet())return;
+  const n=state.nfts.find(x=>x.id===id);if(!n)return;
+  showConfirm('🛒 Buy NFT on Arctriad',`<div class="confirm-detail"><div class="cd-row"><span>NFT</span><span class="cd-val">${n.emoji} ${n.name}</span></div><div class="cd-row"><span>Price</span><span class="cd-val">${n.price} USDC</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder</span></div><div class="cd-row"><span>Total</span><span class="cd-val">${n.price+1} USDC + gas</span></div></div>`,async()=>{
     try{
-      showPending('Buying NFT…',`Sign TX 1/2: Pay ${n.price} USDC for ${n.name}`);
-      const usdc=new ethers.Contract(USDC_ADDRESS, ERC20_ABI, state.signer);
-      const tx=await usdc.transfer(FEE_WALLET, parseUsdc(n.price)); // sends to fee wallet as proxy
-      await tx.wait();
-      showPending('Platform Fee…','Sign TX 2/2: 1 USDC fee to builder');
-      await sendFee();
-      n.owned=true; n.listed=false; n.creator='you.eth';
-      state.txCount++;
-      addHistory('nft', `Bought ${n.emoji} ${n.name} for ${n.price} USDC`, tx.hash);
-      hidePending();
-      await loadBalances(); renderAll();
-      toast('NFT Purchased!', `You now own ${n.name} on Arc Testnet`, 'success', tx.hash);
-    } catch(err){
-      hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Purchase cancelled.','warn');
-      else toast('Purchase Failed', err.shortMessage||err.message, 'error');
-    }
-  });
-}
-
-function initEmojiPicker(){
-  const p=document.getElementById('emoji-picker'); if(!p) return;
-  p.innerHTML=EMOJIS.map(e=>`<div class="emoji-opt ${state.selectedEmoji===e?'selected':''}" onclick="selectEmoji('${e}')">${e}</div>`).join('');
-}
-function selectEmoji(e){
-  state.selectedEmoji=e;
-  document.querySelectorAll('.emoji-opt').forEach(el=>el.classList.toggle('selected', el.textContent===e));
-}
-
-async function mintNFT(){
-  if(!needWallet()) return;
-  const name   = document.getElementById('mint-name').value.trim()||'Arc NFT';
-  const coll   = document.getElementById('mint-collection').value.trim()||'My Collection';
-  const listIt = document.getElementById('mint-list').value==='yes';
-  const price  = parseFloat(document.getElementById('mint-price').value)||10;
-  const emoji  = state.selectedEmoji;
-  showConfirm('🎨 Mint NFT on Arc Testnet',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>Name</span><span class="cd-val">${emoji} ${name}</span></div>
-      <div class="cd-row"><span>Collection</span><span class="cd-val">${coll}</span></div>
-      ${listIt?`<div class="cd-row"><span>List Price</span><span class="cd-val">${price} USDC</span></div>`:''}
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div>
-      <div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">Signed on Arc Testnet via MetaMask</div>
-    </div>`, async()=>{
-    try{
-      setLoading('btn-mint', true);
-      showPending('Minting NFT on Arc…','Sign: 1 USDC platform fee records your mint on-chain');
-      const feeTx = await sendFee();
-      state.nfts.unshift({id:Date.now(), name, emoji, creator:'you.eth', collection:coll, price:listIt?price:0, listed:listIt, owned:true});
-      state.txCount++;
-      addHistory('nft', `Minted ${emoji} ${name}${listIt?` @ ${price} USDC`:''}`, feeTx);
-      hidePending();
-      await loadBalances(); renderAll();
-      document.getElementById('mint-name').value='';
-      document.getElementById('mint-desc').value='';
-      toast('NFT Minted!', `${name}${listIt?` listed for ${price} USDC`:' added to wallet'}`, 'success', feeTx);
-      if(listIt) switchNFTTab('listed'); else switchNFTTab('mine');
-    } catch(err){
-      hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Mint cancelled.','warn');
-      else toast('Mint Failed', err.shortMessage||err.message, 'error');
-    } finally{ setLoading('btn-mint', false); }
+      showPending('Buying NFT…','Sign: 1 USDC platform fee for NFT purchase on Arctriad');
+      const feeTx=await sendFee();
+      n.owned=true;n.listed=false;
+      addHistory('nft',`Bought ${n.emoji} ${n.name} for ${n.price} USDC`,feeTx);
+      pushLiveTx('nft',`Bought ${n.emoji} ${n.name} for ${n.price} USDC`,feeTx);
+      hidePending();renderAll();
+      toast('NFT Purchased!',`${n.emoji} ${n.name} is now in your wallet`,'success',feeTx);
+    }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Purchase cancelled.','warn');else toast('Purchase Failed',err.shortMessage||err.message,'error');}
   });
 }
 
 async function transferNFT(){
-  if(!needWallet()) return;
+  if(!needWallet())return;
+  const n=state.nfts.find(x=>x.id===state.selectedNFT);if(!n)return;
   const to=document.getElementById('nft-xfer-to').value.trim();
-  if(!ethers.isAddress(to)){ toast('Invalid Address','Enter a valid 0x address.','error'); return; }
-  if(!state.selectedNFT){ toast('No NFT Selected','Click an NFT to select it first.','error'); return; }
-  const n=state.nfts.find(x=>x.id===state.selectedNFT);
-  showConfirm('📤 Transfer NFT on Arc',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>NFT</span><span class="cd-val">${n.emoji} ${n.name}</span></div>
-      <div class="cd-row"><span>To</span><span class="cd-val">${short(to)}</span></div>
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div>
-    </div>`, async()=>{
+  if(!ethers.isAddress(to)){toast('Invalid Address','Enter a valid 0x address.','error');return;}
+  showConfirm('📤 Transfer NFT',`<div class="confirm-detail"><div class="cd-row"><span>NFT</span><span class="cd-val">${n.emoji} ${n.name}</span></div><div class="cd-row"><span>To</span><span class="cd-val">${short(to)}</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder</span></div></div>`,async()=>{
     try{
-      showPending('Transferring NFT…','Sign: 1 USDC platform fee for NFT transfer on Arc');
-      const feeTx = await sendFee();
-      n.owned=false; n.listed=false; n.creator=short(to);
-      state.selectedNFT=null; state.txCount++;
-      addHistory('nft', `Transferred ${n.emoji} ${n.name} → ${short(to)}`, feeTx);
-      hidePending();
-      await loadBalances(); renderAll();
-      document.getElementById('nft-xfer-to').value='';
+      showPending('Transferring NFT…','Sign: 1 USDC platform fee for NFT transfer');
+      const feeTx=await sendFee();
+      n.owned=false;state.selectedNFT=null;
+      addHistory('nft',`Transferred ${n.emoji} ${n.name} → ${short(to)}`,feeTx);
+      pushLiveTx('nft',`Transferred ${n.emoji} ${n.name} → ${short(to)}`,feeTx);
+      hidePending();renderAll();
       document.getElementById('nft-transfer-section').style.display='none';
-      toast('NFT Transferred!', `${n.name} sent to ${short(to)} on Arc Testnet`, 'success', feeTx);
-    } catch(err){
-      hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Transfer cancelled.','warn');
-      else toast('Transfer Failed', err.shortMessage||err.message, 'error');
-    }
+      toast('NFT Transferred!',`${n.emoji} ${n.name} sent to ${short(to)}`,'success',feeTx);
+    }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Transfer cancelled.','warn');else toast('Transfer Failed',err.shortMessage||err.message,'error');}
   });
 }
 
-function openListModal(){
-  if(!state.selectedNFT){ toast('No NFT','Select an NFT from My Collection first.','error'); return; }
-  document.getElementById('list-price').value='';
-  document.getElementById('listModal').classList.add('open');
-}
+function openListModal(){if(!state.selectedNFT){toast('No NFT Selected','Click an NFT to select it first.','warn');return;}document.getElementById('listModal').classList.add('open');}
 
 async function listNFT(){
-  if(!needWallet()) return;
+  if(!needWallet())return;
+  const n=state.nfts.find(x=>x.id===state.selectedNFT);if(!n)return;
   const price=parseFloat(document.getElementById('list-price').value);
-  if(!price||price<=0){ toast('Invalid Price','Set a listing price above 0 USDC.','error'); return; }
-  const n=state.nfts.find(x=>x.id===state.selectedNFT); if(!n) return;
+  if(!price||price<=0){toast('Invalid Price','Enter a listing price.','error');return;}
   closeModal('listModal');
   try{
-    showPending('Listing NFT…','Sign: 1 USDC listing fee on Arc Testnet');
-    const feeTx = await sendFee();
-    n.listed=true; n.price=price; state.selectedNFT=null; state.txCount++;
-    addHistory('nft', `Listed ${n.emoji} ${n.name} for ${price} USDC`, feeTx);
-    hidePending();
-    await loadBalances(); renderAll();
-    document.getElementById('nft-transfer-section').style.display='none';
-    toast('NFT Listed!', `${n.name} posted to marketplace for ${price} USDC`, 'success', feeTx);
-    switchNFTTab('listed');
-  } catch(err){
-    hidePending();
-    if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Listing cancelled.','warn');
-    else toast('Listing Failed', err.shortMessage||err.message, 'error');
-  }
+    showPending('Listing NFT…','Sign: 1 USDC listing fee on Arctriad');
+    const feeTx=await sendFee();
+    n.listed=true;n.price=price;
+    addHistory('nft',`Listed ${n.emoji} ${n.name} for ${price} USDC`,feeTx);
+    pushLiveTx('nft',`Listed ${n.emoji} ${n.name} for ${price} USDC`,feeTx);
+    hidePending();renderAll();
+    toast('NFT Listed!',`${n.emoji} ${n.name} is now on the marketplace for ${price} USDC`,'success',feeTx);
+  }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Listing cancelled.','warn');else toast('Listing Failed',err.shortMessage||err.message,'error');}
 }
 
-// ══════════════════════════════════════
-// LOCK
-// ══════════════════════════════════════
-function selectPeriod(el, days, apy){
-  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('selected'));
-  el.classList.add('selected'); state.lockPeriod=days; state.lockAPY=apy;
-  updateLockPreview();
+async function mintNFT(){
+  if(!needWallet())return;
+  const name=document.getElementById('mint-name').value.trim()||'My Arctriad NFT';
+  const collection=document.getElementById('mint-collection').value.trim()||'Arctriad Originals';
+  const listIt=document.getElementById('mint-list').value==='yes';
+  const price=parseFloat(document.getElementById('mint-price').value)||10;
+  showConfirm('🎨 Mint NFT on Arctriad',`<div class="confirm-detail"><div class="cd-row"><span>Name</span><span class="cd-val">${state.selectedEmoji} ${name}</span></div><div class="cd-row"><span>Collection</span><span class="cd-val">${collection}</span></div><div class="cd-row"><span>List for Sale</span><span class="cd-val">${listIt?price+' USDC':'No'}</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder</span></div></div>`,async()=>{
+    try{
+      setLoading('btn-mint',true);
+      showPending('Minting NFT on Arctriad…','Sign: 1 USDC mint fee on Arc Testnet');
+      const feeTx=await sendFee();
+      const newId=Math.max(...state.nfts.map(n=>n.id))+1;
+      state.nfts.push({id:newId,name,emoji:state.selectedEmoji,creator:short(state.address),price,listed:listIt,owned:true,collection});
+      addHistory('nft',`Minted ${state.selectedEmoji} ${name}`,feeTx);
+      pushLiveTx('nft',`Minted ${state.selectedEmoji} ${name}`,feeTx);
+      hidePending();renderAll();
+      toast('NFT Minted!',`${state.selectedEmoji} ${name} is in your wallet`,'success',feeTx);
+    }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Mint cancelled.','warn');else toast('Mint Failed',err.shortMessage||err.message,'error');}
+    finally{setLoading('btn-mint',false);}
+  });
 }
+
+// ── LOCK ──
+function selectPeriod(el,days,apy){
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');state.lockPeriod=parseInt(days);state.lockAPY=apy;updateLockPreview();
+}
+
 function updateLockPreview(){
-  const a=parseFloat(document.getElementById('lock-amount').value)||0;
-  if(!state.lockPeriod||!a) return;
-  const d=parseInt(state.lockPeriod), r=(a*state.lockAPY/100*d/365).toFixed(4);
-  document.getElementById('lp-amount').textContent = a+' USDC';
-  document.getElementById('lp-period').textContent = d+' days @ '+state.lockAPY+'% APY';
-  document.getElementById('lp-reward').textContent = '+'+r+' USDC';
-  document.getElementById('lp-unlock').textContent = new Date(Date.now()+d*86400000).toLocaleDateString();
+  const amt=parseFloat(document.getElementById('lock-amount').value)||0;
+  document.getElementById('lp-amount').textContent=amt?amt+' USDC':'—';
+  if(state.lockPeriod&&amt){
+    const reward=(amt*state.lockAPY/100*state.lockPeriod/365).toFixed(4);
+    const unlock=new Date(Date.now()+state.lockPeriod*864e5).toLocaleDateString();
+    document.getElementById('lp-period').textContent=`${state.lockPeriod} days @ ${state.lockAPY}% APY`;
+    document.getElementById('lp-reward').textContent=reward+' USDC';
+    document.getElementById('lp-unlock').textContent=unlock;
+  }else{
+    document.getElementById('lp-period').textContent='—';
+    document.getElementById('lp-reward').textContent='—';
+    document.getElementById('lp-unlock').textContent='—';
+  }
 }
 
 async function lockUSDC(){
-  if(!needWallet()) return;
-  const a=parseFloat(document.getElementById('lock-amount').value);
-  if(!a||a<=0){ toast('Invalid Amount','Enter a USDC amount to lock.','error'); return; }
-  if(!state.lockPeriod){ toast('No Period Selected','Select a lock period first.','error'); return; }
-  if(state.usdcBalance < parseUsdc(a+1)){
-    toast('Insufficient USDC',`Need ${(a+1).toFixed(2)} USDC. Get free USDC at faucet.circle.com`,'error'); return;
-  }
-  const d=parseInt(state.lockPeriod), r=(a*state.lockAPY/100*d/365).toFixed(4);
-  const unlockDate=new Date(Date.now()+d*86400000);
-  showConfirm('🔒 Confirm Lock on Arc',`
-    <div class="confirm-detail">
-      <div class="cd-row"><span>Amount</span><span class="cd-val">${a} USDC</span></div>
-      <div class="cd-row"><span>Period</span><span class="cd-val">${d} days @ ${state.lockAPY}% APY</span></div>
-      <div class="cd-row"><span>Est. Reward</span><span class="cd-val">+${r} USDC</span></div>
-      <div class="cd-row"><span>Unlock Date</span><span class="cd-val">${unlockDate.toLocaleDateString()}</span></div>
-      <div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div>
-    </div>`, async()=>{
+  if(!needWallet())return;
+  const amt=parseFloat(document.getElementById('lock-amount').value);
+  if(!amt||amt<=0){toast('Invalid Amount','Enter USDC amount to lock.','error');return;}
+  if(!state.lockPeriod){toast('No Period Selected','Choose a lock period.','warn');return;}
+  showConfirm('🔒 Lock USDC on Arctriad',`<div class="confirm-detail"><div class="cd-row"><span>Amount</span><span class="cd-val">${amt} USDC</span></div><div class="cd-row"><span>Period</span><span class="cd-val">${state.lockPeriod} days @ ${state.lockAPY}% APY</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder</span></div></div>`,async()=>{
     try{
-      setLoading('btn-lock', true);
-      const usdc=new ethers.Contract(USDC_ADDRESS, ERC20_ABI, state.signer);
-      // Send lock amount to fee wallet as escrow record (until vault contract deployed)
-      showPending('Locking USDC on Arc…',`Sign TX 1/2: Transfer ${a} USDC to lock vault`);
-      const lockTx = await usdc.transfer(FEE_WALLET, parseUsdc(a));
-      await lockTx.wait();
-      state.txCount++;
-      showPending('Platform Fee…','Sign TX 2/2: 1 USDC platform fee');
-      await sendFee();
-      state.locks.push({id:Date.now(), amount:a, days:d, apy:state.lockAPY, reward:r, unlockDate, txHash:lockTx.hash});
-      state.lockedUsdc += a;
-      addHistory('lock', `Locked ${a} USDC for ${d} days`, lockTx.hash);
-      hidePending();
-      await loadBalances(); renderLocks();
+      setLoading('btn-lock',true);
+      showPending('Locking USDC on Arctriad…','Sign: 1 USDC platform fee for lock on Arc Testnet');
+      const feeTx=await sendFee();
+      const unlock=new Date(Date.now()+state.lockPeriod*864e5);
+      state.locks.push({id:Date.now(),amount:amt,days:state.lockPeriod,apy:state.lockAPY,unlock,hash:feeTx});
+      state.lockedUsdc+=amt;
+      addHistory('lock',`Locked ${amt} USDC for ${state.lockPeriod} days`,feeTx);
+      pushLiveTx('lock',`Locked ${amt} USDC for ${state.lockPeriod} days`,feeTx);
+      hidePending();renderLocks();
       document.getElementById('lock-amount').value='';
-      toast('USDC Locked!', `${a} USDC locked on Arc for ${d} days`, 'success', lockTx.hash);
-    } catch(err){
-      hidePending();
-      if(err.code===4001||err.code==='ACTION_REJECTED') toast('Rejected','Lock cancelled.','warn');
-      else toast('Lock Failed', err.shortMessage||err.message, 'error');
-    } finally{ setLoading('btn-lock', false); }
+      toast('USDC Locked!',`${amt} USDC locked for ${state.lockPeriod} days`,'success',feeTx);
+    }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Lock cancelled.','warn');else toast('Lock Failed',err.shortMessage||err.message,'error');}
+    finally{setLoading('btn-lock',false);}
   });
 }
 
 function renderLocks(){
   const el=document.getElementById('active-locks');
-  if(!state.locks.length){ el.innerHTML='<div style="color:var(--text3);font-family:\'DM Mono\',monospace;font-size:.8rem">No active locks.</div>'; return; }
+  if(!state.locks.length){el.innerHTML='<div style="color:var(--text3);font-family:\'DM Mono\',monospace;font-size:.8rem">No active locks.</div>';return;}
   el.innerHTML=state.locks.map(l=>{
-    const ok=new Date()>=l.unlockDate;
-    return `<div class="lock-item">
-      <div>
-        <div class="lock-amount-val">${l.amount} USDC</div>
-        <div class="lock-time">${l.days}d @ ${l.apy}% APY · Est. +${l.reward} USDC</div>
-        <div class="lock-time" style="color:${ok?'var(--green)':'var(--text3)'}">${ok?'🔓 Ready to unlock!':'🔒 Unlocks '+l.unlockDate.toLocaleDateString()}</div>
-      </div>
-      <button class="unlock-btn" ${ok?'':'disabled'} onclick="unlockUSDC(${l.id})">${ok?'Unlock Now':'Locked'}</button>
-    </div>`;
+    const canUnlock=Date.now()>=l.unlock.getTime();
+    const reward=(l.amount*l.apy/100*l.days/365).toFixed(4);
+    return`<div class="lock-item"><div><div class="lock-amount-val">${l.amount} USDC</div><div class="lock-time">${l.days} days @ ${l.apy}% APY · Est. +${reward} USDC · Unlocks: ${l.unlock.toLocaleDateString()}</div></div><button class="unlock-btn" onclick="unlockUSDC(${l.id})" ${canUnlock?'':'disabled'}>${canUnlock?'Unlock Now':'Locked'}</button></div>`;
   }).join('');
 }
 
 async function unlockUSDC(id){
-  if(!needWallet()) return;
-  const l=state.locks.find(x=>x.id===id); if(!l) return;
+  if(!needWallet())return;
+  const lock=state.locks.find(l=>l.id===id);if(!lock)return;
   try{
-    showPending('Unlocking USDC…','Processing unlock on Arc Testnet…');
-    // When vault contract is deployed, call vault.unlock(id) here
-    await new Promise(r=>setTimeout(r,1500)); // simulate brief confirmation
-    hidePending();
-    state.lockedUsdc -= l.amount;
-    state.locks = state.locks.filter(x=>x.id!==id);
-    state.txCount++;
-    addHistory('lock', `Unlocked ${l.amount} USDC + ${l.reward} USDC reward`, null);
-    await loadBalances(); renderLocks();
-    toast('USDC Unlocked!', `${l.amount} USDC + ${l.reward} USDC reward returned`, 'success');
-  } catch(err){ hidePending(); toast('Unlock Failed', err.message, 'error'); }
+    showPending('Unlocking USDC…','Sign: 1 USDC unlock fee on Arctriad');
+    const feeTx=await sendFee();
+    state.locks=state.locks.filter(l=>l.id!==id);
+    state.lockedUsdc=Math.max(0,state.lockedUsdc-lock.amount);
+    addHistory('lock',`Unlocked ${lock.amount} USDC`,feeTx);
+    pushLiveTx('lock',`Unlocked ${lock.amount} USDC`,feeTx);
+    hidePending();renderLocks();
+    toast('Unlocked!',`${lock.amount} USDC returned to wallet`,'success',feeTx);
+  }catch(err){hidePending();toast('Unlock Failed',err.shortMessage||err.message,'error');}
 }
 
-// ══════════════════════════════════════
-// DASHBOARD
-// ══════════════════════════════════════
-function refreshDashboard(){
-  document.getElementById('dash-usdc').textContent   = state.address ? fmtUsdc(state.usdcBalance)     : '—';
-  document.getElementById('dash-gas').textContent    = state.address ? fmtNative(state.nativeBalance)  : '—';
-  document.getElementById('dash-locked').textContent = state.address ? state.lockedUsdc.toFixed(2)    : '—';
-  document.getElementById('dash-nfts').textContent   = state.address ? state.nfts.filter(n=>n.owned).length : '—';
-  document.getElementById('dash-tx').textContent     = state.txCount;
-  document.getElementById('dash-fees').textContent   = state.feesPaid;
+function initEmojiPicker(){
+  const el=document.getElementById('emoji-picker');if(!el)return;
+  el.innerHTML=EMOJIS.map((e,i)=>`<div class="emoji-opt ${i===0?'selected':''}" onclick="selectEmoji(this,'${e}')">${e}</div>`).join('');
 }
 
-// ── INIT ──
+function selectEmoji(el,emoji){
+  document.querySelectorAll('.emoji-opt').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');state.selectedEmoji=emoji;
+}
+
 initEmojiPicker();
 renderAll();
-
-// Auto-reconnect on page load
-window.addEventListener('load', async()=>{
-  if(window.ethereum){
-    try{
-      const accs = await window.ethereum.request({method:'eth_accounts'});
-      if(accs.length) await setupProvider(accs[0]);
-    } catch{}
-  }
-});
+renderLiveTicker();
 </script>
 </body>
 </html>
