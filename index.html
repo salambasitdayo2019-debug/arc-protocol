@@ -446,27 +446,51 @@ select option{background:var(--surface2)}
   </div>
 
   <!-- SWAP -->
-  <div id="panel-swap" class="panel">
-    <div class="card">
-      <div class="card-title">🔄 Token Swap</div>
-      <div class="card-sub">Swap tokens on Arc Testnet — signed via MetaMask</div>
-      <div class="fee-notice">⚡ 1 USDC platform fee per swap + USDC gas to Arc network</div>
+<div id="panel-swap" class="panel">
+  <div class="card">
+    <div class="card-title">🔄 Token Swap</div>
+    <div class="card-sub">Swap tokens on Arc Testnet — signed via MetaMask</div>
+    <div class="fee-notice">⚡ 1 USDC platform fee per swap + USDC gas to Arc network</div>
 
-      <div class="swap-panel-wrap">
-        <!-- FROM -->
-        <div class="swap-side from-side">
-          <div class="swap-side-label">
-            <span class="side-tag">⬆ YOU PAY</span>
-            <span class="side-bal">Balance: <span id="swap-from-bal">—</span> <button class="swap-max-btn" onclick="setMaxSwap()">MAX</button></span>
-          </div>
-          <div class="swap-main-row">
-            <input class="swap-amount-input" id="swap-from-amt" type="text" inputmode="decimal" placeholder="0" oninput="calcSwap()" autocomplete="off">
-            <select class="swap-token-select" id="swap-from-tok" onchange="calcSwap()">
-              <option>USDC</option><option>EURC</option><option>USYC</option>
-            </select>
-          </div>
-          <div class="swap-usd-hint" id="swap-from-usd">≈ $0.00 USD</div>
-        </div>
+    <div class="swap-box">
+      <label>FROM TOKEN</label>
+      <div class="swap-input-row">
+        <input type="number" id="swap-from-amt" placeholder="0.00" min="0" step="0.01" oninput="calcSwap()">
+        <select id="swap-from-tok" class="token-badge" onchange="syncTokenSelects('from'); calcSwap()">
+          <option value="USDC">USDC</option>
+          <option value="EURC">EURC</option>
+          <option value="USYC">USYC</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="swap-flip" onclick="flipSwap()">⇅</div>
+
+    <div class="swap-box">
+      <label>TO TOKEN (ESTIMATED)</label>
+      <div class="swap-input-row">
+        <input type="number" id="swap-to-amt" placeholder="0.00" readonly style="opacity:.7;cursor:not-allowed">
+        <select id="swap-to-tok" class="token-badge" onchange="syncTokenSelects('to'); calcSwap()">
+          <option value="EURC">EURC</option>
+          <option value="USDC">USDC</option>
+          <option value="USYC">USYC</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:.8rem 0;font-family:'DM Mono',monospace;font-size:.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+      <span style="color:var(--text3)">RATE</span>
+      <span id="swap-rate-txt" style="color:var(--cyan)">Enter an amount above</span>
+    </div>
+
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:1.2rem;font-family:'DM Mono',monospace;font-size:.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+      <span style="color:var(--text3)">YOUR USDC BALANCE</span>
+      <span id="swap-balance-display" style="color:var(--green)">Connect wallet to view</span>
+    </div>
+
+    <button class="btn-primary" id="btn-swap" onclick="executeSwap()">Sign & Swap on Arc →</button>
+  </div>
+</div>
 
         <!-- FLIP -->
         <div style="display:flex;align-items:center;justify-content:center;height:32px">
