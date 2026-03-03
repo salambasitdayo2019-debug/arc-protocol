@@ -79,8 +79,7 @@ select option{background:var(--surface2)}
 .btn-outline{padding:8px 16px;border-radius:8px;background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
 .btn-outline:hover{border-color:var(--accent);color:#60a5fa}
 
-/* ── SWAP REDESIGN ── */
-.swap-panel-wrap{display:flex;flex-direction:column;gap:6px}
+/* ── SWAP STYLES ── */
 .swap-side{border-radius:16px;padding:1.2rem 1.4rem 1rem;position:relative}
 .swap-side.from-side{background:#0d1f3a;border:2px solid #1e3a6e}
 .swap-side.to-side{background:#0a1f18;border:2px solid #164430}
@@ -90,52 +89,22 @@ select option{background:var(--surface2)}
 .to-side .side-tag{color:#34d399}
 .swap-side-label .side-bal{color:var(--text3);font-size:.62rem}
 .swap-main-row{display:flex;align-items:center;gap:12px}
-.swap-amount-input{
-  flex:1;
-  background:transparent;
-  border:none;
-  outline:none;
-  font-family:'Outfit',sans-serif;
-  font-size:2.6rem;
-  font-weight:900;
-  letter-spacing:-.03em;
-  padding:0;
-  width:100%;
-  min-width:0;
-}
+.swap-amount-input{flex:1;background:transparent;border:none;outline:none;font-family:'Outfit',sans-serif;font-size:2.4rem;font-weight:900;letter-spacing:-.03em;padding:0;width:100%;min-width:0}
 .from-side .swap-amount-input{color:#ffffff;caret-color:#60a5fa}
-.from-side .swap-amount-input::placeholder{color:rgba(255,255,255,.2)}
-.to-side .swap-amount-input{color:#34d399;caret-color:#34d399}
-.to-side .swap-amount-input::placeholder{color:rgba(52,211,153,.2)}
-.swap-token-select{
-  flex-shrink:0;
-  background:#0f1e36;
-  border:1.5px solid #2a4a80;
-  border-radius:50px;
-  color:#fff;
-  font-family:'DM Mono',monospace;
-  font-size:.9rem;
-  font-weight:700;
-  padding:10px 18px;
-  cursor:pointer;
-  appearance:none;
-  -webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2360a5fa'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:right 12px center;
-  padding-right:32px;
-  letter-spacing:.03em;
-}
-.to-side .swap-token-select{background:#0a1f18;border-color:#1e5c3a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2334d399'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.from-side .swap-amount-input::placeholder{color:rgba(255,255,255,.25)}
+.to-side .swap-amount-input{color:#34d399;cursor:not-allowed}
+.to-side .swap-amount-input::placeholder{color:rgba(52,211,153,.25)}
+.swap-token-select{flex-shrink:0;background:#0f1e36;border:1.5px solid #2a4a80;border-radius:50px;color:#fff;font-family:'DM Mono',monospace;font-size:.88rem;font-weight:700;padding:10px 32px 10px 16px;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2360a5fa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;letter-spacing:.03em;width:auto;min-width:90px}
+.to-side .swap-token-select{background-color:#0a1f18;border-color:#1e5c3a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2334d399'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .swap-token-select option{background:#0d1f3a;color:#fff}
 .swap-usd-hint{font-size:.75rem;font-family:'DM Mono',monospace;color:var(--text3);margin-top:.5rem}
-.swap-flip-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#0f1929;border:2px solid var(--border2);color:#60a5fa;font-size:1.3rem;cursor:pointer;transition:all .35s;margin:0 auto;position:relative;z-index:2;flex-shrink:0;align-self:center}
+.swap-flip-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#0f1929;border:2px solid var(--border2);color:#60a5fa;font-size:1.3rem;cursor:pointer;transition:all .35s;margin:6px auto;flex-shrink:0}
 .swap-flip-btn:hover{transform:rotate(180deg);border-color:var(--accent);background:rgba(59,130,246,.15)}
 .swap-rate-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.14);border-radius:10px;padding:10px 16px;margin-bottom:1rem;flex-wrap:wrap;gap:.4rem}
 .swap-rate-bar .rate-label{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--text3)}
 .swap-rate-bar .rate-val{font-size:.75rem;font-family:'DM Mono',monospace;color:#60a5fa;font-weight:700}
-.swap-max-btn{font-size:.62rem;font-family:'DM Mono',monospace;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#60a5fa;border-radius:4px;padding:2px 7px;cursor:pointer;margin-left:6px}
-.swap-max-btn:hover{background:rgba(96,165,250,.22)}
+.swap-max-btn{font-size:.62rem;font-family:'DM Mono',monospace;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#60a5fa;border-radius:4px;padding:3px 8px;cursor:pointer;transition:background .2s}
+.swap-max-btn:hover{background:rgba(96,165,250,.25)}
 
 .nft-tabs{display:flex;gap:6px;margin-bottom:1.2rem;flex-wrap:wrap}
 .nft-tab{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s}
@@ -445,8 +414,81 @@ select option{background:var(--surface2)}
     </div>
   </div>
 
+  <!-- SWAP — fully corrected with working amount input -->
+  <div id="panel-swap" class="panel">
+    <div class="card">
+      <div class="card-title">🔄 Token Swap</div>
+      <div class="card-sub">Swap tokens on Arc Testnet — signed via MetaMask</div>
+      <div class="fee-notice">⚡ 1 USDC platform fee per swap + USDC gas to Arc network</div>
 
+      <!-- YOU PAY -->
+      <div class="swap-side from-side" style="margin-bottom:4px">
+        <div class="swap-side-label">
+          <span class="side-tag">YOU PAY</span>
+          <span class="side-bal" id="swap-from-bal">Balance: —</span>
+        </div>
+        <div class="swap-main-row">
+          <input
+            class="swap-amount-input"
+            type="number"
+            id="swap-from-amt"
+            placeholder="0.00"
+            min="0"
+            step="0.01"
+            oninput="calcSwap()"
+          >
+          <select class="swap-token-select" id="swap-from-tok" onchange="syncTokenSelects('from')">
+            <option value="USDC">USDC</option>
+            <option value="EURC">EURC</option>
+            <option value="USYC">USYC</option>
+          </select>
+        </div>
+        <div class="swap-usd-hint" id="swap-from-usd">≈ $0.00 USD</div>
+      </div>
 
+      <!-- FLIP BUTTON -->
+      <button class="swap-flip-btn" onclick="flipSwap()" title="Flip tokens">⇅</button>
+
+      <!-- YOU RECEIVE -->
+      <div class="swap-side to-side" style="margin-bottom:1rem">
+        <div class="swap-side-label">
+          <span class="side-tag">YOU RECEIVE</span>
+          <span class="side-bal" id="swap-to-bal">Estimated output</span>
+        </div>
+        <div class="swap-main-row">
+          <input
+            class="swap-amount-input"
+            type="number"
+            id="swap-to-amt"
+            placeholder="0.00"
+            readonly
+            tabindex="-1"
+          >
+          <select class="swap-token-select" id="swap-to-tok" onchange="syncTokenSelects('to')">
+            <option value="EURC">EURC</option>
+            <option value="USDC">USDC</option>
+            <option value="USYC">USYC</option>
+          </select>
+        </div>
+        <div class="swap-usd-hint" id="swap-to-usd">≈ $0.00 USD</div>
+      </div>
+
+      <!-- RATE BAR -->
+      <div class="swap-rate-bar">
+        <span class="rate-label">RATE</span>
+        <span class="rate-val" id="swap-rate-txt">Enter an amount above to see the exchange rate</span>
+        <span class="rate-val" id="swap-rate-right" style="color:var(--cyan)"></span>
+      </div>
+
+      <!-- MAX + ACTION -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
+        <span style="font-size:.72rem;color:var(--text3);font-family:'DM Mono',monospace">Total includes 1 USDC platform fee</span>
+        <button class="swap-max-btn" onclick="setMaxSwap()">USE MAX</button>
+      </div>
+
+      <button class="btn-primary" id="btn-swap" onclick="executeSwap()">Sign & Swap on Arctriad →</button>
+    </div>
+  </div>
 
   <!-- NFT -->
   <div id="panel-nft" class="panel">
@@ -591,24 +633,43 @@ select option{background:var(--surface2)}
 <div id="toast-wrap"></div>
 
 <script>
+// ═══════════════════════════════════════════════
+// ARCTRIAD DAPP — Arc Testnet Chain 5042002
+// ═══════════════════════════════════════════════
 const ARC_CHAIN={chainId:'0x4CE792',chainName:'Arc Testnet',nativeCurrency:{name:'USDC',symbol:'USDC',decimals:18},rpcUrls:['https://rpc.testnet.arc.network'],blockExplorerUrls:['https://testnet.arcscan.app']};
 const USDC_ADDRESS='0x3600000000000000000000000000000000000000';
 const FEE_WALLET='0xa28f6f51a208a2ea67fcba9d8f8d4f17c0c21df7';
 const ARC_CHAIN_ID=5042002;
 const EXPLORER='https://testnet.arcscan.app';
 const ERC20_ABI=['function balanceOf(address) view returns (uint256)','function decimals() view returns (uint8)','function symbol() view returns (string)','function transfer(address to, uint256 amount) returns (bool)','function approve(address spender, uint256 amount) returns (bool)','function allowance(address owner, address spender) view returns (uint256)'];
+
 const RATES={USDC:{EURC:0.923,USYC:0.998,USDC:1},EURC:{USDC:1.083,USYC:1.081,EURC:1},USYC:{USDC:1.002,EURC:0.925,USYC:1}};
+const USD_PRICES={USDC:1,EURC:1.083,USYC:1.002};
 const EMOJIS=['🚀','💎','🌊','🔥','⚡','🦋','🎭','🎨','👾','🐉','🦄','🌙','⭐','🏆','🎯','🦊','🐺','🌈','💫','🎪','🔮','🌺','🍀','🎸','🤖','🦅','🐬','🏔️','💥','🌟','🎆','🦁','🐯','🎋','🏺','🦩','🐙','🎃','🌀','👑'];
 const BGGRADES=['linear-gradient(135deg,#1e3a5f,#0f2240)','linear-gradient(135deg,#1a1f3c,#0d1224)','linear-gradient(135deg,#1f2d1a,#0d1a0a)','linear-gradient(135deg,#2d1a1a,#1a0a0a)','linear-gradient(135deg,#1a1a2d,#0a0a1a)','linear-gradient(135deg,#2d261a,#1a150a)','linear-gradient(135deg,#0d2233,#071525)','linear-gradient(135deg,#1f1a2d,#0f0a1a)'];
 const DEFAULT_NFTS=[{id:1,name:'Arc Genesis',emoji:'🌊',creator:'arc.eth',price:50,listed:true,owned:false,collection:'Genesis'},{id:2,name:'Protocol Punk #1',emoji:'👾',creator:'punk.eth',price:120,listed:true,owned:false,collection:'Punks'},{id:3,name:'Chain Flame',emoji:'🔥',creator:'flame.eth',price:35,listed:true,owned:false,collection:'Elements'},{id:4,name:'Void Dragon',emoji:'🐉',creator:'void.eth',price:200,listed:true,owned:false,collection:'Legends'},{id:5,name:'Nebula Star',emoji:'⭐',creator:'neb.eth',price:18,listed:true,owned:false,collection:'Cosmos'},{id:6,name:'Arc Unicorn',emoji:'🦄',creator:'magic.eth',price:88,listed:true,owned:false,collection:'Rare'},{id:7,name:'Thunder Eagle',emoji:'🦅',creator:'sky.eth',price:45,listed:true,owned:false,collection:'Wildlife'},{id:8,name:'Cyber Fox',emoji:'🦊',creator:'cyber.eth',price:67,listed:false,owned:true,collection:'Cyber'},{id:9,name:'Moon Rock',emoji:'🌙',creator:'luna.eth',price:30,listed:true,owned:false,collection:'Cosmos'},{id:10,name:'Neon Robot',emoji:'🤖',creator:'dex.eth',price:95,listed:true,owned:false,collection:'Cyber'},{id:11,name:'Rainbow Burst',emoji:'🌈',creator:'color.eth',price:22,listed:true,owned:false,collection:'Elements'},{id:12,name:'Ocean Spirit',emoji:'🐬',creator:'wave.eth',price:55,listed:false,owned:true,collection:'Wildlife'},{id:13,name:'Crystal Trophy',emoji:'🏆',creator:'win.eth',price:150,listed:true,owned:false,collection:'Rare'},{id:14,name:'Magic Orb',emoji:'🔮',creator:'spell.eth',price:80,listed:true,owned:false,collection:'Legends'},{id:15,name:'Arctriad Rocket',emoji:'🚀',creator:'launch.eth',price:110,listed:true,owned:false,collection:'Genesis'},{id:16,name:'Diamond Gem',emoji:'💎',creator:'gem.eth',price:300,listed:true,owned:false,collection:'Rare'},{id:17,name:'Fire Phoenix',emoji:'🦋',creator:'phx.eth',price:175,listed:true,owned:false,collection:'Legends'},{id:18,name:'Storm Wave',emoji:'🌀',creator:'storm.eth',price:42,listed:true,owned:false,collection:'Elements'},{id:19,name:'Gold Lion',emoji:'🦁',creator:'roar.eth',price:220,listed:true,owned:false,collection:'Wildlife'},{id:20,name:'Cosmic Star',emoji:'🌟',creator:'cosmos.eth',price:65,listed:true,owned:false,collection:'Cosmos'}];
 
-let state={provider:null,signer:null,address:'',chainId:null,usdcBalance:0n,usdcDecimals:6,nativeBalance:0n,txCount:0,feesPaid:0,lockedUsdc:0,nfts:JSON.parse(JSON.stringify(DEFAULT_NFTS)),locks:[],history:[],selectedNFT:null,lockPeriod:null,lockAPY:null,selectedEmoji:'🚀',liveTxFeed:[]};
+let state={
+  provider:null,signer:null,address:'',chainId:null,
+  usdcBalance:0n,usdcDecimals:6,nativeBalance:0n,
+  txCount:0,feesPaid:0,lockedUsdc:0,
+  nfts:JSON.parse(JSON.stringify(DEFAULT_NFTS)),
+  locks:[],history:[],
+  selectedNFT:null,lockPeriod:null,lockAPY:null,
+  selectedEmoji:'🚀',liveTxFeed:[]
+};
 
 function explorerTx(h){return`${EXPLORER}/tx/${h}`;}
 function short(a){return a.slice(0,6)+'...'+a.slice(-4);}
 
 function switchTab(tab){
-  document.querySelectorAll('.tab-btn').forEach(b=>{const t=b.textContent.toLowerCase();b.classList.toggle('active',(tab==='overview'&&t.includes('overview'))||(tab==='transfer'&&t.includes('transfer'))||(tab==='swap'&&t.includes('swap'))||(tab==='nft'&&t.includes('nft'))||(tab==='lock'&&t.includes('lock'))||(tab==='dashboard'&&t.includes('dashboard')));});
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    const t=b.textContent.toLowerCase();
+    b.classList.toggle('active',
+      (tab==='overview'&&t.includes('overview'))||(tab==='transfer'&&t.includes('transfer'))||
+      (tab==='swap'&&t.includes('swap'))||(tab==='nft'&&t.includes('nft'))||
+      (tab==='lock'&&t.includes('lock'))||(tab==='dashboard'&&t.includes('dashboard')));
+  });
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+tab).classList.add('active');
   if(tab==='dashboard')refreshDashboard();
@@ -621,8 +682,7 @@ function hidePending(){document.getElementById('tx-pending').classList.remove('s
 
 function toast(title,msg,type='info',hash=''){
   const icons={success:'✅',error:'❌',info:'💡',warn:'⚠️'};
-  const el=document.createElement('div');
-  el.className='toast '+type;
+  const el=document.createElement('div');el.className='toast '+type;
   const hashHtml=hash?`<div class="toast-hash"><a href="${explorerTx(hash)}" target="_blank">View on ArcScan ↗</a></div>`:'';
   el.innerHTML=`<span style="font-size:1.1rem">${icons[type]||'💡'}</span><div class="toast-body"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div>${hashHtml}</div>`;
   document.getElementById('toast-wrap').prepend(el);
@@ -665,7 +725,7 @@ function renderLiveTicker(){
 function showLiveBanner(){document.getElementById('live-tx-banner').style.display='block';}
 
 async function connectWallet(){
-  if(!window.ethereum){toast('MetaMask Not Found','Install MetaMask at metamask.io — then add Arc Testnet.','error');window.open('https://metamask.io/download/','_blank');return;}
+  if(!window.ethereum){toast('MetaMask Not Found','Install MetaMask at metamask.io then add Arc Testnet.','error');window.open('https://metamask.io/download/','_blank');return;}
   try{
     const btn=document.getElementById('connectBtn');
     btn.disabled=true;btn.textContent='Connecting…';
@@ -727,9 +787,7 @@ function updateBalUI(){
   document.getElementById('gasBalance').textContent=fmtNative(state.nativeBalance);
   document.getElementById('txCountBal').textContent=state.txCount;
   document.getElementById('avail-transfer').textContent=fmtUsdc(state.usdcBalance)+' USDC';
-  const bal=fmtUsdc(state.usdcBalance)+' USDC';
-  document.getElementById('swap-from-bal').textContent=bal;
-  document.getElementById('swap-to-bal').textContent=bal;
+  document.getElementById('swap-from-bal').textContent=fmtUsdc(state.usdcBalance)+' USDC available';
 }
 
 async function addArcNetwork(){
@@ -770,15 +828,6 @@ function renderHistory(){
   }).join('');
 }
 
-function refreshDashboard(){
-  document.getElementById('dash-usdc').textContent=state.address?fmtUsdc(state.usdcBalance):'—';
-  document.getElementById('dash-gas').textContent=state.address?fmtNative(state.nativeBalance):'—';
-  document.getElementById('dash-locked').textContent=state.lockedUsdc.toFixed(2);
-  document.getElementById('dash-nfts').textContent=state.nfts.filter(n=>n.owned).length;
-  document.getElementById('dash-tx').textContent=state.txCount;
-  document.getElementById('dash-fees').textContent=state.feesPaid+' USDC';
-}
-
 let _cb=null;
 function showConfirm(title,body,cb){
   document.getElementById('confirm-title').textContent=title;
@@ -788,7 +837,18 @@ function showConfirm(title,body,cb){
   document.getElementById('confirmModal').classList.add('open');
 }
 
-// ── TRANSFER ──
+function refreshDashboard(){
+  document.getElementById('dash-usdc').textContent=state.address?fmtUsdc(state.usdcBalance):'—';
+  document.getElementById('dash-gas').textContent=state.address?fmtNative(state.nativeBalance):'—';
+  document.getElementById('dash-locked').textContent=state.lockedUsdc.toFixed(2);
+  document.getElementById('dash-nfts').textContent=state.nfts.filter(n=>n.owned).length;
+  document.getElementById('dash-tx').textContent=state.txCount;
+  document.getElementById('dash-fees').textContent=state.feesPaid+' USDC';
+}
+
+// ══════════════════════════════════════
+// TRANSFER
+// ══════════════════════════════════════
 async function executeTransfer(){
   if(!needWallet())return;
   const to=document.getElementById('transfer-to').value.trim();
@@ -812,8 +872,7 @@ async function executeTransfer(){
       renderHistory();
       showPending('Platform Fee…','Sign TX 2/2: 1 USDC fee to builder wallet');
       await sendFee();
-      hidePending();
-      await loadBalances();
+      hidePending();await loadBalances();
       document.getElementById('transfer-to').value='';
       document.getElementById('transfer-amount').value='';
       toast('Transfer Complete!',`${amt} USDC sent to ${short(to)}`,'success',tx1.hash);
@@ -825,40 +884,68 @@ async function executeTransfer(){
   });
 }
 
-// ── SWAP ──
-function calcSwap(){
-  const f=document.getElementById('swap-from-tok').value;
-  const t=document.getElementById('swap-to-tok').value;
-  const raw=document.getElementById('swap-from-amt').value.replace(/[^0-9.]/g,'');
-  const a=parseFloat(raw)||0;
-  const rate=RATES[f]?.[t]||1;
-  const out=f===t?a:a*rate;
-  document.getElementById('swap-to-amt').value=a>0?out.toFixed(4):'';
-  const usdRates={USDC:1,EURC:1.083,USYC:1.002};
-  const fromUsd=(a*(usdRates[f]||1)).toFixed(2);
-  const toUsd=(out*(usdRates[t]||1)).toFixed(2);
-  document.getElementById('swap-from-usd').textContent=a>0?`≈ $${fromUsd} USD`:'≈ $0.00 USD';
-  document.getElementById('swap-to-usd').textContent=a>0?`≈ $${toUsd} USD`:'≈ $0.00 USD';
-  if(a>0&&f!==t){
-    document.getElementById('swap-rate-txt').textContent=`1 ${f} = ${rate} ${t}`;
-    document.getElementById('swap-rate-right').textContent=`${a} ${f} → ${out.toFixed(4)} ${t}`;
-  }else{
-    document.getElementById('swap-rate-txt').textContent='Enter an amount above to see the exchange rate';
-    document.getElementById('swap-rate-right').textContent='';
-  }
-}
+// ══════════════════════════════════════
+// SWAP — all bugs fixed
+// ══════════════════════════════════════
 
-function setMaxSwap(){
-  const bal=state.address?fmtUsdc(state.usdcBalance):'0';
-  document.getElementById('swap-from-amt').value=parseFloat(bal)>0?(parseFloat(bal)-1).toFixed(2):'0';
+// Prevent same token on both sides — called on every dropdown change
+function syncTokenSelects(changed){
+  const fromSel=document.getElementById('swap-from-tok');
+  const toSel=document.getElementById('swap-to-tok');
+  const tokens=['USDC','EURC','USYC'];
+  if(fromSel.value===toSel.value){
+    if(changed==='from') toSel.value=tokens.find(t=>t!==fromSel.value)||'EURC';
+    else fromSel.value=tokens.find(t=>t!==toSel.value)||'USDC';
+  }
   calcSwap();
 }
 
+function calcSwap(){
+  const f=document.getElementById('swap-from-tok').value;
+  const t=document.getElementById('swap-to-tok').value;
+  const a=parseFloat(document.getElementById('swap-from-amt').value)||0;
+
+  // Always refresh balance label
+  if(state.address){
+    document.getElementById('swap-from-bal').textContent=fmtUsdc(state.usdcBalance)+' USDC available';
+  }
+
+  if(!a||a<=0||f===t){
+    document.getElementById('swap-to-amt').value='';
+    document.getElementById('swap-from-usd').textContent='≈ $0.00 USD';
+    document.getElementById('swap-to-usd').textContent='≈ $0.00 USD';
+    document.getElementById('swap-rate-txt').textContent='Enter an amount above to see the exchange rate';
+    document.getElementById('swap-rate-right').textContent='';
+    return;
+  }
+
+  const rate=RATES[f]?.[t]||1;
+  const out=(a*rate).toFixed(4);
+  document.getElementById('swap-to-amt').value=out;
+  document.getElementById('swap-from-usd').textContent='≈ $'+(a*(USD_PRICES[f]||1)).toFixed(2)+' USD';
+  document.getElementById('swap-to-usd').textContent='≈ $'+(parseFloat(out)*(USD_PRICES[t]||1)).toFixed(2)+' USD';
+  document.getElementById('swap-rate-txt').textContent=`1 ${f} = ${rate} ${t}`;
+  document.getElementById('swap-rate-right').textContent=`${a} ${f} → ${out} ${t}`;
+}
+
+function setMaxSwap(){
+  if(!state.address){toast('Not Connected','Connect your wallet first.','warn');return;}
+  const bal=parseFloat(fmtUsdc(state.usdcBalance));
+  const max=Math.max(0,bal-1).toFixed(2);
+  document.getElementById('swap-from-amt').value=max;
+  document.getElementById('swap-from-tok').value='USDC';
+  syncTokenSelects('from');
+}
+
 function flipSwap(){
-  const ft=document.getElementById('swap-from-tok'),tt=document.getElementById('swap-to-tok');
-  const fa=document.getElementById('swap-from-amt'),ta=document.getElementById('swap-to-amt');
-  [ft.value,tt.value]=[tt.value,ft.value];
-  fa.value=ta.value||'';
+  const fromSel=document.getElementById('swap-from-tok');
+  const toSel=document.getElementById('swap-to-tok');
+  const fromAmt=document.getElementById('swap-from-amt');
+  const toAmt=document.getElementById('swap-to-amt');
+  const tmp=fromSel.value;
+  fromSel.value=toSel.value;
+  toSel.value=tmp;
+  fromAmt.value=toAmt.value||'';
   calcSwap();
 }
 
@@ -868,18 +955,17 @@ async function executeSwap(){
   const to=document.getElementById('swap-to-tok').value;
   const amt=parseFloat(document.getElementById('swap-from-amt').value)||0;
   const out=document.getElementById('swap-to-amt').value||'0';
-  if(!amt||amt<=0){toast('Invalid Amount','Enter a swap amount.','error');return;}
-  if(from===to){toast('Same Token','Select different tokens to swap.','warn');return;}
-  showConfirm('🔄 Confirm Swap',`<div class="confirm-detail"><div class="cd-row"><span>From</span><span class="cd-val">${amt} ${from}</span></div><div class="cd-row"><span>To</span><span class="cd-val">≈ ${out} ${to}</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div><div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask signs 1 transaction on Arc Testnet</div></div>`,async()=>{
+  if(!amt||amt<=0){toast('Invalid Amount','Enter a swap amount greater than 0.','error');return;}
+  if(from===to){toast('Same Token','Select two different tokens to swap.','warn');return;}
+  showConfirm('🔄 Confirm Swap',`<div class="confirm-detail"><div class="cd-row"><span>From</span><span class="cd-val">${amt} ${from}</span></div><div class="cd-row"><span>To</span><span class="cd-val">≈ ${out} ${to}</span></div><div class="cd-row"><span>Rate</span><span class="cd-val">1 ${from} = ${RATES[from]?.[to]||1} ${to}</span></div><div class="cd-row"><span>Platform Fee</span><span class="confirm-fee">1 USDC → builder wallet</span></div><div class="cd-row" style="margin-top:.5rem;font-size:.7rem;color:var(--text3)">MetaMask signs 1 transaction on Arc Testnet</div></div>`,async()=>{
     try{
       setLoading('btn-swap',true);
       showPending('Recording Swap on Arctriad…','Sign: 1 USDC platform fee records your swap on-chain');
       const feeTx=await sendFee();
-      state.txCount++;
       addHistory('swap',`${amt} ${from} → ${out} ${to}`,feeTx);
       pushLiveTx('swap',`${amt} ${from} → ${out} ${to}`,feeTx);
-      hidePending();
-      await loadBalances();
+      hidePending();await loadBalances();
+      // Reset
       document.getElementById('swap-from-amt').value='';
       document.getElementById('swap-to-amt').value='';
       document.getElementById('swap-from-usd').textContent='≈ $0.00 USD';
@@ -895,9 +981,13 @@ async function executeSwap(){
   });
 }
 
-// ── NFT ──
+// ══════════════════════════════════════
+// NFT
+// ══════════════════════════════════════
 function switchNFTTab(tab){
-  document.querySelectorAll('.nft-tab').forEach(b=>b.classList.toggle('active',(tab==='all'&&b.textContent.includes('All'))||(tab==='mine'&&b.textContent.includes('My'))||(tab==='listed'&&b.textContent.includes('Sale'))||(tab==='post'&&b.textContent.includes('Post'))));
+  document.querySelectorAll('.nft-tab').forEach(b=>b.classList.toggle('active',
+    (tab==='all'&&b.textContent.includes('All'))||(tab==='mine'&&b.textContent.includes('My'))||
+    (tab==='listed'&&b.textContent.includes('Sale'))||(tab==='post'&&b.textContent.includes('Post'))));
   ['all','mine','listed','post'].forEach(v=>document.getElementById('nft-view-'+v).style.display=v===tab?'':'none');
   renderAll();
 }
@@ -934,7 +1024,7 @@ async function buyNFT(id){
       n.owned=true;n.listed=false;
       addHistory('nft',`Bought ${n.emoji} ${n.name} for ${n.price} USDC`,feeTx);
       pushLiveTx('nft',`Bought ${n.emoji} ${n.name} for ${n.price} USDC`,feeTx);
-      hidePending();renderAll();
+      hidePending();renderAll();await loadBalances();
       toast('NFT Purchased!',`${n.emoji} ${n.name} is now in your wallet`,'success',feeTx);
     }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Purchase cancelled.','warn');else toast('Purchase Failed',err.shortMessage||err.message,'error');}
   });
@@ -954,12 +1044,17 @@ async function transferNFT(){
       pushLiveTx('nft',`Transferred ${n.emoji} ${n.name} → ${short(to)}`,feeTx);
       hidePending();renderAll();
       document.getElementById('nft-transfer-section').style.display='none';
+      await loadBalances();
       toast('NFT Transferred!',`${n.emoji} ${n.name} sent to ${short(to)}`,'success',feeTx);
     }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Transfer cancelled.','warn');else toast('Transfer Failed',err.shortMessage||err.message,'error');}
   });
 }
 
-function openListModal(){if(!state.selectedNFT){toast('No NFT Selected','Click an NFT to select it first.','warn');return;}document.getElementById('listModal').classList.add('open');}
+function openListModal(){
+  if(!state.selectedNFT){toast('No NFT Selected','Click an NFT to select it first.','warn');return;}
+  document.getElementById('list-price').value='';
+  document.getElementById('listModal').classList.add('open');
+}
 
 async function listNFT(){
   if(!needWallet())return;
@@ -970,11 +1065,11 @@ async function listNFT(){
   try{
     showPending('Listing NFT…','Sign: 1 USDC listing fee on Arctriad');
     const feeTx=await sendFee();
-    n.listed=true;n.price=price;
+    n.listed=true;n.price=price;state.selectedNFT=null;
     addHistory('nft',`Listed ${n.emoji} ${n.name} for ${price} USDC`,feeTx);
     pushLiveTx('nft',`Listed ${n.emoji} ${n.name} for ${price} USDC`,feeTx);
-    hidePending();renderAll();
-    toast('NFT Listed!',`${n.emoji} ${n.name} is now on the marketplace for ${price} USDC`,'success',feeTx);
+    hidePending();renderAll();await loadBalances();
+    toast('NFT Listed!',`${n.emoji} ${n.name} posted for ${price} USDC`,'success',feeTx);
   }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Listing cancelled.','warn');else toast('Listing Failed',err.shortMessage||err.message,'error');}
 }
 
@@ -993,14 +1088,16 @@ async function mintNFT(){
       state.nfts.push({id:newId,name,emoji:state.selectedEmoji,creator:short(state.address),price,listed:listIt,owned:true,collection});
       addHistory('nft',`Minted ${state.selectedEmoji} ${name}`,feeTx);
       pushLiveTx('nft',`Minted ${state.selectedEmoji} ${name}`,feeTx);
-      hidePending();renderAll();
+      hidePending();renderAll();await loadBalances();
       toast('NFT Minted!',`${state.selectedEmoji} ${name} is in your wallet`,'success',feeTx);
     }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Mint cancelled.','warn');else toast('Mint Failed',err.shortMessage||err.message,'error');}
     finally{setLoading('btn-mint',false);}
   });
 }
 
-// ── LOCK ──
+// ══════════════════════════════════════
+// LOCK
+// ══════════════════════════════════════
 function selectPeriod(el,days,apy){
   document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');state.lockPeriod=parseInt(days);state.lockAPY=apy;updateLockPreview();
@@ -1039,6 +1136,7 @@ async function lockUSDC(){
       pushLiveTx('lock',`Locked ${amt} USDC for ${state.lockPeriod} days`,feeTx);
       hidePending();renderLocks();
       document.getElementById('lock-amount').value='';
+      await loadBalances();
       toast('USDC Locked!',`${amt} USDC locked for ${state.lockPeriod} days`,'success',feeTx);
     }catch(err){hidePending();if(err.code===4001||err.code==='ACTION_REJECTED')toast('Rejected','Lock cancelled.','warn');else toast('Lock Failed',err.shortMessage||err.message,'error');}
     finally{setLoading('btn-lock',false);}
@@ -1065,11 +1163,12 @@ async function unlockUSDC(id){
     state.lockedUsdc=Math.max(0,state.lockedUsdc-lock.amount);
     addHistory('lock',`Unlocked ${lock.amount} USDC`,feeTx);
     pushLiveTx('lock',`Unlocked ${lock.amount} USDC`,feeTx);
-    hidePending();renderLocks();
+    hidePending();renderLocks();await loadBalances();
     toast('Unlocked!',`${lock.amount} USDC returned to wallet`,'success',feeTx);
   }catch(err){hidePending();toast('Unlock Failed',err.shortMessage||err.message,'error');}
 }
 
+// ── EMOJI PICKER ──
 function initEmojiPicker(){
   const el=document.getElementById('emoji-picker');if(!el)return;
   el.innerHTML=EMOJIS.map((e,i)=>`<div class="emoji-opt ${i===0?'selected':''}" onclick="selectEmoji(this,'${e}')">${e}</div>`).join('');
@@ -1080,9 +1179,19 @@ function selectEmoji(el,emoji){
   el.classList.add('selected');state.selectedEmoji=emoji;
 }
 
+// ── INIT ──
 initEmojiPicker();
 renderAll();
 renderLiveTicker();
+
+window.addEventListener('load',async()=>{
+  if(window.ethereum){
+    try{
+      const accs=await window.ethereum.request({method:'eth_accounts'});
+      if(accs.length)await setupProvider(accs[0]);
+    }catch(e){}
+  }
+});
 </script>
 </body>
 </html>
