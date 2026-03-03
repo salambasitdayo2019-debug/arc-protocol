@@ -491,35 +491,65 @@ select option{background:var(--surface2)}
     <button class="btn-primary" id="btn-swap" onclick="executeSwap()">Sign & Swap on Arc →</button>
   </div>
 </div>
+// ── SWAP LOGIC ──
+function syncTokenSelects(changed) {
+  const fromSel = document.getElementById('swap-from-tok');
+  const toSel   = document.getElementById('swap-to-tok');
+  const from    = fromSel.value;
+  const to      = toSel.value;
 
-        <!-- FLIP -->
-        <div style="display:flex;align-items:center;justify-content:center;height:32px">
-          <div class="swap-flip-btn" onclick="flipSwap()">⇅</div>
-        </div>
+  // If both are the same, auto-switch the other to the next available token
+  if (from === to) {
+    const tokens = ['USDC', 'EURC', 'USYC'];
+    if (changed === 'from') {
+      // Changed FROM — pick a TO that isn't FROM
+      toSel.value = tokens.find(t => t !== from) || 'EURC';
+    } else {
+      // Changed TO — pick a FROM that isn't TO
+      fromSel.value = tokens.find(t => t !== to) || 'USDC';
+    }
+  }
+  calcSwap();
+}
 
-        <!-- TO -->
-        <div class="swap-side to-side">
-          <div class="swap-side-label">
-            <span class="side-tag">⬇ YOU RECEIVE</span>
-            <span class="side-bal">Balance: <span id="swap-to-bal">—</span></span>
-          </div>
-          <div class="swap-main-row">
-            <input class="swap-amount-input" id="swap-to-amt" type="text" placeholder="0" readonly>
-            <select class="swap-token-select" id="swap-to-tok" onchange="calcSwap()">
-              <option>EURC</option><option>USDC</option><option>USYC</option>
-            </select>
-          </div>
-          <div class="swap-usd-hint" id="swap-to-usd">≈ $0.00 USD</div>
-        </div>
-      </div>
+function calcSwap() {
+  const from = document.getElementById('swap-from-tok').value;
+  const to   = document.getElementById('swap-to-tok').value;
+  const amt  = parseFloat(document.getElementById('swap-from-amt').value);
 
-      <div class="swap-rate-bar" style="margin-top:10px">
-        <span class="rate-label" id="swap-rate-txt">Enter an amount above to see the exchange rate</span>
-        <span class="rate-val" id="swap-rate-right"></span>
-      </div>
-      <button class="btn-primary" id="btn-swap" onclick="executeSwap()" style="margin-top:.4rem">Sign & Swap →</button>
-    </div>
-  </div>
+  // Update balance display
+  const balEl = document.getElementById('swap-balance-display');
+  if (state.address) {
+    balEl.textContent = fmtUsdc(state.usdcBalance) + ' USDC available';
+  }
+
+  if (!amt || amt <= 0 || from === to) {
+    document.getElementById('swap-to-amt').value = '';
+    document.getElementById('swap-rate-txt').textContent = 'Enter an amount above';
+    return;
+  }
+
+  const rate = RATES[from]?.[to] ?? 1;
+  const out  = (amt * rate).toFixed(6);
+  document.getElementById('swap-to-amt').value    = out;
+  document.getElementById('swap-rate-txt').textContent = `1 ${from} = ${rate} ${to}`;
+}
+
+function flipSwap() {
+  const fromSel = document.getElementById('swap-from-tok');
+  const toSel   = document.getElementById('swap-to-tok');
+  const fromAmt = document.getElementById('swap-from-amt');
+  const toAmt   = document.getElementById('swap-to-amt');
+
+  // Swap token selections
+  const tmp     = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value   = tmp;
+
+  // Put the estimated output amount into the input field
+  fromAmt.value = toAmt.value || '';
+  calcSwap();
+}
 
   <!-- NFT -->
   <div id="panel-nft" class="panel">
